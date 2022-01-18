@@ -8,37 +8,45 @@ import sqlite3
 
 from ProfileScreen import FillProfileScreen
 
-
 class CreateAccScreen(QDialog):
     def __init__(self):
         super(CreateAccScreen, self).__init__()
         loadUi("createacc.ui",self)
+        # Hides the password when typing into the field
         self.passwordfield.setEchoMode(QtWidgets.QLineEdit.Password)
         self.confirmpasswordfield.setEchoMode(QtWidgets.QLineEdit.Password)
         self.signup.clicked.connect(self.signupfunction)
 
     def signupfunction(self):
-        user = self.emailfield.text()
+        username = self.emailfield.text()
         password = self.passwordfield.text()
         confirmpassword = self.confirmpasswordfield.text()
 
-        if len(user)==0 or len(password)==0 or len(confirmpassword)==0:
+        if len(username)==0 or len(password)==0 or len(confirmpassword)==0:
             self.error.setText("Please fill in all inputs.")
 
         elif password!=confirmpassword:
             self.error.setText("Passwords do not match.")
+
         else:
             conn = sqlite3.connect("auc_database.db")
             cur = conn.cursor()
+            cur.execute('SELECT username FROM users WHERE username=?', (username,))
+            if username in cur.fetchall():
+                self.error.setText("Username already exists")
+                self.signupfunction()
+            else:
+                user_info = [username, password]
+                cur.execute('''INSERT INTO users (username, password) 
+                               VALUES (?,?)''', user_info)
 
-            user_info = [user, password]
-            cur.execute('INSERT INTO login_info (username, password) VALUES (?,?)', user_info)
+                conn.commit()
+                conn.close()
 
-            conn.commit()
-            conn.close()
-
-            fillprofile = FillProfileScreen()
-            widget.addWidget(fillprofile)
-            widget.setCurrentIndex(widget.currentIndex()+1)
+                #Taking to the further details page
+                fillprofile = FillProfileScreen()
+                widget = QtWidgets.QStackedWidget()
+                widget.addWidget(fillprofile)
+                widget.setCurrentIndex(widget.currentIndex()+1)
 
 

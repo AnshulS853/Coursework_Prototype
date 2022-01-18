@@ -4,13 +4,16 @@ from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QDialog, QApplication, QWidget
 from PyQt5.QtGui import QPixmap
 
+#importing all the main window functions to main file to be called
 from LoginScreen import LoginScreen
 from CreateAccount import CreateAccScreen
 
 class WelcomeScreen(QDialog):
     def __init__(self):
+        #Constructor function for the welcome screen
         super(WelcomeScreen, self).__init__()
         loadUi("welcomescreen.ui",self)
+        #connecting buttons to functions when clicked
         self.login.clicked.connect(self.gotologin)
         self.create.clicked.connect(self.gotocreate)
 
@@ -26,7 +29,7 @@ class WelcomeScreen(QDialog):
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
 # main
-
+#statements to load the welcome window when program run
 app = QApplication(sys.argv)
 welcome = WelcomeScreen()
 widget = QtWidgets.QStackedWidget()
