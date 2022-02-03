@@ -3,9 +3,7 @@ import sqlite3
 conn = sqlite3.connect("auc_database.db")
 cur = conn.cursor()
 
-from CreateAccount import signupfunction
-
-def insertuserinfo(user_info):
+def insertuserinfo(user_info,username):
     cur.execute('''
         INSERT INTO users
         (firstname,lastname,email,dob,gender)
