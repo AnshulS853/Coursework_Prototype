@@ -7,7 +7,6 @@ from PyQt5.QtGui import QPixmap
 
 import sqlite3
 import re
-from databasefunction import insertaddress
 
 class FillAddress(QDialog):
     def __init__(self):
@@ -42,7 +41,4 @@ class FillAddress(QDialog):
                      "afieldtwo": self.addressfield2.text(),
                      "postcode": int(self.postcode.text()),
                      "county": self.county.text()}
-
-        # insertaddress(user_address,userID)
-
     pass

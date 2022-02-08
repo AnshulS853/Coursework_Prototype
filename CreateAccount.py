@@ -7,6 +7,7 @@ from PyQt5.QtGui import QPixmap
 import sqlite3
 
 from ProfileScreen import FillProfileScreen
+from gettersetter import data
 
 class CreateAccScreen(QDialog):
     def __init__(self):
@@ -27,7 +28,6 @@ class CreateAccScreen(QDialog):
 
         elif password!=confirmpassword:
             self.error.setText("Passwords do not match.")
-
         else:
             conn = sqlite3.connect("auc_database.db")
             cur = conn.cursor()
@@ -37,8 +37,12 @@ class CreateAccScreen(QDialog):
                 self.signupfunction()
             else:
                 user_info = [username, password]
-                cur.execute('''INSERT INTO users (username, password) 
-                               VALUES (?,?)''', user_info)
+                cur.execute('''INSERT INTO users (admin,username, password) 
+                               VALUES (0,?,?)''', user_info)
+
+                userID = cur.execute('SELECT userID FROM users WHERE username=?', (username,))
+                x = data()
+                x.set_userID(userID)
 
                 conn.commit()
                 conn.close()
@@ -48,5 +52,4 @@ class CreateAccScreen(QDialog):
                 widget = QtWidgets.QStackedWidget()
                 widget.addWidget(fillprofile)
                 widget.setCurrentIndex(widget.currentIndex()+1)
-
 

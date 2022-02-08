@@ -80,12 +80,12 @@ class FillProfileScreen(QDialog):
         widget.addWidget(filladdress)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
-app = QApplication(sys.argv)
-xtt = FillProfileScreen()
-widget = QtWidgets.QStackedWidget()
-widget.addWidget(xtt)
-widget.show()
-try:
-    sys.exit(app.exec_())
-except:
-    print("Exiting")
+# app = QApplication(sys.argv)
+# xtt = FillProfileScreen()
+# widget = QtWidgets.QStackedWidget()
+# widget.addWidget(xtt)
+# widget.show()
+# try:
+#     sys.exit(app.exec_())
+# except:
+#     print("Exiting")
