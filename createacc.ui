@@ -88,7 +88,7 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
      <string>Sign up</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="emailfield">
+   <widget class="QLineEdit" name="usernamefield">
     <property name="geometry">
      <rect>
       <x>70</x>

@@ -17,20 +17,6 @@ class databasefunction:
         conn.close()
 
 
-    def insertgender(self,gender):
-        x = data()
-        userID = x.get_userID()
-        conn = sqlite3.connect("auc_database.db")
-        cur = conn.cursor()
-        cur.execute('''
-                    UPDATE users
-                    SET gender=?,
-                    WHERE userID=?
-                    ''',(gender,userID))
-        conn.commit()
-        conn.close()
-
-
     def insertaddress(self,address):
         x = data()
         userID = x.get_userID()

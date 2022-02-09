@@ -9,9 +9,9 @@ conn = sl3.connect("auc_database.db")
 def setup_db():
     c = conn.cursor()
     c.execute("""CREATE TABLE IF NOT EXISTS users 
-                        ( userID    Integer PRIMARY KEY AUTOINCREMENT
-                        , admin     Integer
-                        , username  Text
+                        ( userID    Integer PRIMARY KEY AUTOINCREMENT NOT NULL
+                        , admin     Integer NOT NULL
+                        , username  Text    NOT NULL
                         , password  Integer
                         , firstname Text
                         , lastname  Text

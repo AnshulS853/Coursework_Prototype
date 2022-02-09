@@ -19,7 +19,7 @@ class CreateAccScreen(QDialog):
         self.signup.clicked.connect(self.signupfunction)
 
     def signupfunction(self):
-        username = self.emailfield.text()
+        username = self.usernamefield.text()
         password = self.passwordfield.text()
         confirmpassword = self.confirmpasswordfield.text()
 
@@ -31,13 +31,21 @@ class CreateAccScreen(QDialog):
         else:
             conn = sqlite3.connect("auc_database.db")
             cur = conn.cursor()
-            cur.execute('SELECT username FROM users WHERE username=?', (username,))
-            if username in cur.fetchall():
+            # cur.execute('SELECT username FROM users WHERE username=?', (username,))
+            # print(cur.fetchall())
+            # checkUsername = cur.fetchall()
+            cur.execute('SELECT COUNT(username) FROM users WHERE username=?',(username,))
+            count = cur.fetchall()
+            print(count)
+            if count[0][0] != 0:
                 self.error.setText("Username already exists")
-                self.signupfunction()
+                self.signup.clicked.connect(self.signupfunction)
+            # if not checkUsername:
+            #     self.error.setText("Username already exists")
+            #     self.signup.clicked.connect(self.signupfunction)
             else:
-                user_info = [username, password]
-                cur.execute('''INSERT INTO users (admin,username, password) 
+                user_info = (username, password)
+                cur.execute('''INSERT INTO users (admin, username, password)
                                VALUES (0,?,?)''', user_info)
 
                 userID = cur.execute('SELECT userID FROM users WHERE username=?', (username,))
@@ -47,9 +55,10 @@ class CreateAccScreen(QDialog):
                 conn.commit()
                 conn.close()
 
-                #Taking to the further details page
-                fillprofile = FillProfileScreen()
-                widget = QtWidgets.QStackedWidget()
-                widget.addWidget(fillprofile)
-                widget.setCurrentIndex(widget.currentIndex()+1)
+                self.close()
+                self.window = FillProfileScreen()
+                self.window.show()
+
+
+
 

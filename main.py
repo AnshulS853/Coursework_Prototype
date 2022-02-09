@@ -19,22 +19,34 @@ class WelcomeScreen(QDialog):
 
 
     def gotologin(self):
-        login = LoginScreen()
-        widget.addWidget(login)
-        widget.setCurrentIndex(widget.currentIndex()+1)
+        self.login = LoginScreen()
+        # widget.addWidget(login)
+        # widget.setCurrentIndex(widget.currentIndex()+1)
+        self.login.show()
+        self.close()
 
     def gotocreate(self):
-        create = CreateAccScreen()
-        widget.addWidget(create)
-        widget.setCurrentIndex(widget.currentIndex() + 1)
+        self.create = CreateAccScreen()
+        # widget.addWidget(create)
+        # widget.setCurrentIndex(widget.currentIndex() + 1)
+        self.create.show()
+        self.close()
 
 # main
 #statements to load the welcome window when program run
+# app = QApplication(sys.argv)
+# welcome = WelcomeScreen()
+# widget = QtWidgets.QStackedWidget()
+# widget.addWidget(welcome)
+# widget.show()
+# try:
+#     sys.exit(app.exec_())
+# except:
+#     print("Exiting")
+
 app = QApplication(sys.argv)
 welcome = WelcomeScreen()
-widget = QtWidgets.QStackedWidget()
-widget.addWidget(welcome)
-widget.show()
+welcome.show()
 try:
     sys.exit(app.exec_())
 except:

@@ -11,6 +11,7 @@ import re
 
 from filladdress import FillAddress
 from datetime import date
+from databasefunction import databasefunction
 
 regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
 
@@ -23,10 +24,16 @@ class FillProfileScreen(QDialog):
     def checknumeric(self,s):
         return any(i.isdigit() for i in s)
 
-    def age(self,birthdate):
+    def calculate_age(dateofb):
         today = date.today()
-        age = today.year - birthdate.year - ((today.month, today.day) < (birthdate.month, birthdate.day))
-        return age
+        try:
+            birthday = dateofb.replace(year=today.year)
+        except ValueError:  # raised when birth date is February 29 and the current year is not a leap year
+            birthday = dateofb.replace(year=today.year, month=dateofb.month + 1, day=1)
+        if birthday > today:
+            return today.year - dateofb.year - 1
+        else:
+            return today.year - dateofb.year
 
     def saveprofile(self):
         gender = str(self.gender.currentText())
@@ -68,24 +75,21 @@ class FillProfileScreen(QDialog):
             self.signupcontinue.clicked.connect(self.saveprofile)
         print(user_info)
 
-        user_age = self.age(user_info["dob"])
+        user_age = self.dateofb(user_info["dob"])
         print(user_age)
 
         # if user_age <= 13:
         #     self.doberror.setText("You have to be over 13 to create an account")
         #     self.signupcontinue.clicked.connect(self.saveprofile)
 
-        filladdress = FillAddress()
-        widget = QtWidgets.QStackedWidget()
-        widget.addWidget(filladdress)
-        widget.setCurrentIndex(widget.currentIndex() + 1)
+        # filladdress = FillAddress()
+        # widget = QtWidgets.QStackedWidget()
+        # widget.addWidget(filladdress)
+        # widget.setCurrentIndex(widget.currentIndex() + 1)
 
-# app = QApplication(sys.argv)
-# xtt = FillProfileScreen()
-# widget = QtWidgets.QStackedWidget()
-# widget.addWidget(xtt)
-# widget.show()
-# try:
-#     sys.exit(app.exec_())
-# except:
-#     print("Exiting")
+        x = databasefunction()
+        x.insertuserinfo(user_info)
+
+        self.close()
+        self.window = FillAddress()
+        self.window.show()
