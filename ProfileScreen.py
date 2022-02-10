@@ -24,7 +24,7 @@ class FillProfileScreen(QDialog):
     def checknumeric(self,s):
         return any(i.isdigit() for i in s)
 
-    def calculate_age(dateofb):
+    def calculate_age(self,dateofb):
         today = date.today()
         try:
             birthday = dateofb.replace(year=today.year)
@@ -73,14 +73,12 @@ class FillProfileScreen(QDialog):
         else:
             self.emailerror.setText("Invalid email format")
             self.signupcontinue.clicked.connect(self.saveprofile)
-        print(user_info)
 
-        user_age = self.dateofb(user_info["dob"])
-        print(user_age)
+        user_age = self.calculate_age(user_info["dob"])
 
-        # if user_age <= 13:
-        #     self.doberror.setText("You have to be over 13 to create an account")
-        #     self.signupcontinue.clicked.connect(self.saveprofile)
+        if user_age <= 13:
+            self.doberror.setText("You have to be over 13 to create an account")
+            self.signupcontinue.clicked.connect(self.saveprofile)
 
         # filladdress = FillAddress()
         # widget = QtWidgets.QStackedWidget()
@@ -88,7 +86,7 @@ class FillProfileScreen(QDialog):
         # widget.setCurrentIndex(widget.currentIndex() + 1)
 
         x = databasefunction()
-        x.insertuserinfo(user_info)
+        x.insertuserinfo = user_info
 
         self.close()
         self.window = FillAddress()

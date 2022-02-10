@@ -1,11 +1,14 @@
 import sqlite3
 from gettersetter import data
+from dictfactory import dict_factory
+
 
 class databasefunction:
     def insertuserinfo(self,user_info):
         x = data()
-        userID = x.get_userID()
+        userID = x.get_userID
         conn = sqlite3.connect("auc_database.db")
+        conn.row_factory = dict_factory
         cur = conn.cursor()
         cur.execute('''
             INSERT INTO users
@@ -19,7 +22,7 @@ class databasefunction:
 
     def insertaddress(self,address):
         x = data()
-        userID = x.get_userID()
+        userID = x.get_userID
         conn = sqlite3.connect("auc_database.db")
         cur = conn.cursor()
         cur.execute('''

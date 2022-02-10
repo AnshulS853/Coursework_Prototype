@@ -31,26 +31,21 @@ class CreateAccScreen(QDialog):
         else:
             conn = sqlite3.connect("auc_database.db")
             cur = conn.cursor()
-            # cur.execute('SELECT username FROM users WHERE username=?', (username,))
-            # print(cur.fetchall())
-            # checkUsername = cur.fetchall()
             cur.execute('SELECT COUNT(username) FROM users WHERE username=?',(username,))
             count = cur.fetchall()
-            print(count)
             if count[0][0] != 0:
                 self.error.setText("Username already exists")
                 self.signup.clicked.connect(self.signupfunction)
-            # if not checkUsername:
-            #     self.error.setText("Username already exists")
-            #     self.signup.clicked.connect(self.signupfunction)
             else:
                 user_info = (username, password)
                 cur.execute('''INSERT INTO users (admin, username, password)
                                VALUES (0,?,?)''', user_info)
 
-                userID = cur.execute('SELECT userID FROM users WHERE username=?', (username,))
+                cur.execute('SELECT userID FROM users WHERE username=?', (username,))
+                userID = cur.fetchall()
+                userID = int(userID[0][0])
                 x = data()
-                x.set_userID(userID)
+                x.set_userID = userID
 
                 conn.commit()
                 conn.close()
