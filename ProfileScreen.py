@@ -11,15 +11,16 @@ import re
 
 from filladdress import FillAddress
 from datetime import date
-from databasefunction import databasefunction
+from databasefunction import databaseclass
 
 regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
 
 class FillProfileScreen(QDialog):
-    def __init__(self):
+    def __init__(self,uid):
         super(FillProfileScreen, self).__init__()
         loadUi("fillprofile.ui",self)
         self.signupcontinue.clicked.connect(self.saveprofile)
+        self.userID = uid
 
     def checknumeric(self,s):
         return any(i.isdigit() for i in s)
@@ -43,50 +44,88 @@ class FillProfileScreen(QDialog):
         else:
             gender = 1
 
-        user_info = {"firstname":self.firstname.text(),
-                     "lastname":self.lastname.text(),
-                     "email":self.email.text(),
-                     "dob":self.dob.date().toPyDate(),
-                     "gender":gender}
+        # user_info = {"firstname":self.firstname.text(),
+        #              "lastname":self.lastname.text(),
+        #              "email":self.email.text(),
+        #              "dob":self.dob.date().toPyDate(),
+        #              "gender":gender}
 
-        if len(user_info["firstname"]) > 12 or self.checknumeric(user_info["firstname"])==True:
+        firstname = string.capwords(self.firstname.text())
+        lastname = string.capwords(self.lastname.text())
+
+        if len(firstname) > 12 or self.checknumeric(firstname)==True:
             self.firstnameerror.setText("Your firstname must be less than 12 characters and cannot be alphanumeric")
             self.signupcontinue.clicked.connect(self.saveprofile)
 
-        if not user_info["firstname"]:
+        if not firstname:
             self.firstnameerror.setText("This field cannot be empty")
             self.signupcontinue.clicked.connect(self.saveprofile)
 
-        if not user_info["lastname"]:
+        if not lastname:
             self.lastnameerror.setText("This field cannot be empty")
             self.signupcontinue.clicked.connect(self.saveprofile)
 
-        if len(user_info["lastname"]) > 12 or self.checknumeric(user_info["lastname"])==True:
+        if len(lastname) > 12 or self.checknumeric(lastname)==True:
             self.firstnameerror.setText("Your lastname must be less than 12 characters and cannot be alphanumeric")
             self.signupcontinue.clicked.connect(self.saveprofile)
 
-        user_info["firstname"] = string.capwords(user_info["firstname"])
-        user_info["lastname"] = string.capwords(user_info["lastname"])
+        user_info = (firstname,
+                     lastname,
+                     self.email.text(),
+                     self.dob.date().toPyDate(),
+                     int(gender))
 
-        if (re.search(regex, user_info["email"])):
-            pass
-        else:
-            self.emailerror.setText("Invalid email format")
-            self.signupcontinue.clicked.connect(self.saveprofile)
-
-        user_age = self.calculate_age(user_info["dob"])
-
-        if user_age <= 13:
-            self.doberror.setText("You have to be over 13 to create an account")
-            self.signupcontinue.clicked.connect(self.saveprofile)
+        # if len(user_info["firstname"]) > 12 or self.checknumeric(user_info["firstname"])==True:
+        #     self.firstnameerror.setText("Your firstname must be less than 12 characters and cannot be alphanumeric")
+        #     self.signupcontinue.clicked.connect(self.saveprofile)
+        #
+        # if not user_info["firstname"]:
+        #     self.firstnameerror.setText("This field cannot be empty")
+        #     self.signupcontinue.clicked.connect(self.saveprofile)
+        #
+        # if not user_info["lastname"]:
+        #     self.lastnameerror.setText("This field cannot be empty")
+        #     self.signupcontinue.clicked.connect(self.saveprofile)
+        #
+        # if len(user_info["lastname"]) > 12 or self.checknumeric(user_info["lastname"])==True:
+        #     self.firstnameerror.setText("Your lastname must be less than 12 characters and cannot be alphanumeric")
+        #     self.signupcontinue.clicked.connect(self.saveprofile)
+        #
+        # user_info["firstname"] = string.capwords(user_info["firstname"])
+        # user_info["lastname"] = string.capwords(user_info["lastname"])
+        #
+        # if (re.search(regex, user_info["email"])):
+        #     pass
+        # else:
+        #     self.emailerror.setText("Invalid email format")
+        #     self.signupcontinue.clicked.connect(self.saveprofile)
+        #
+        # user_age = self.calculate_age(user_info["dob"])
+        #
+        # if user_age <= 13:
+        #     self.doberror.setText("You have to be over 13 to create an account")
+        #     self.signupcontinue.clicked.connect(self.saveprofile)
 
         # filladdress = FillAddress()
         # widget = QtWidgets.QStackedWidget()
         # widget.addWidget(filladdress)
         # widget.setCurrentIndex(widget.currentIndex() + 1)
 
-        x = databasefunction()
-        x.insertuserinfo = user_info
+        if (re.search(regex, user_info[2])):
+            pass
+        else:
+            self.emailerror.setText("Invalid email format")
+            self.signupcontinue.clicked.connect(self.saveprofile)
+
+        user_age = self.calculate_age(user_info[3])
+
+        if user_age <= 13:
+            self.doberror.setText("You have to be over 13 to create an account")
+            self.signupcontinue.clicked.connect(self.saveprofile)
+
+
+        x = databaseclass(self.userID)
+        x.insertuserinfo(user_info)
 
         self.close()
         self.window = FillAddress()

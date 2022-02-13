@@ -1,35 +1,36 @@
 import sqlite3
-from gettersetter import data
 from dictfactory import dict_factory
 
+class databaseclass:
+    def __init__(self,uid):
+        self.userID = uid
 
-class databasefunction:
     def insertuserinfo(self,user_info):
-        x = data()
-        userID = x.get_userID
         conn = sqlite3.connect("auc_database.db")
-        conn.row_factory = dict_factory
         cur = conn.cursor()
         cur.execute('''
-            INSERT INTO users
-            (firstname,lastname,email,dob,gender)
-            VALUES (?,?,?,?,?)
+            UPDATE users
+            SET firstname=?,
+            lastname=?,
+            email=?,
+            dob=?,
+            gender=?
             WHERE userID = (?)
-        ''',(user_info,userID))
+        ''',(user_info[0],user_info[1],user_info[2],user_info[3],user_info[4],self.userID))
         conn.commit()
         conn.close()
 
 
     def insertaddress(self,address):
-        x = data()
-        userID = x.get_userID
         conn = sqlite3.connect("auc_database.db")
         cur = conn.cursor()
         cur.execute('''
-            INSERT INTO address
-            (address1,address2,postcode,county)
-            VALUES (?,?,?,?)
+            UPDATE address
+            SET address1=?,
+            address2=?,
+            postcode=?,
+            county=?
             WHERE userID = (?)
-            ''',(address,userID))
+            ''',(address,self.userID))
         conn.commit()
         conn.close()

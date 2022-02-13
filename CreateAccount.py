@@ -7,7 +7,6 @@ from PyQt5.QtGui import QPixmap
 import sqlite3
 
 from ProfileScreen import FillProfileScreen
-from gettersetter import data
 
 class CreateAccScreen(QDialog):
     def __init__(self):
@@ -17,6 +16,7 @@ class CreateAccScreen(QDialog):
         self.passwordfield.setEchoMode(QtWidgets.QLineEdit.Password)
         self.confirmpasswordfield.setEchoMode(QtWidgets.QLineEdit.Password)
         self.signup.clicked.connect(self.signupfunction)
+        self.userID = 0
 
     def signupfunction(self):
         username = self.usernamefield.text()
@@ -43,15 +43,14 @@ class CreateAccScreen(QDialog):
 
                 cur.execute('SELECT userID FROM users WHERE username=?', (username,))
                 userID = cur.fetchall()
-                userID = int(userID[0][0])
-                x = data()
-                x.set_userID = userID
+                self.userID = int(userID[0][0])
+                # x = data(userID)
 
                 conn.commit()
                 conn.close()
 
                 self.close()
-                self.window = FillProfileScreen()
+                self.window = FillProfileScreen(self.userID)
                 self.window.show()
 
 
