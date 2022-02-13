@@ -48,6 +48,5 @@ class FillAddress(QDialog):
         self.close()
         self.window = mainmenu(self.userID)
         self.window.show()
-        pass
 
 

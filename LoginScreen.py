@@ -5,12 +5,14 @@ from PyQt5.QtWidgets import QDialog, QApplication, QWidget
 from PyQt5.QtGui import QPixmap
 
 import sqlite3
+import hashlib
 from mainmenu import mainmenu
 
 class LoginScreen(QDialog):
     def __init__(self):
         super(LoginScreen, self).__init__()
         loadUi("login.ui",self)
+        self.userID = 0
         # Hides the password when typing into the field
         self.passwordfield.setEchoMode(QtWidgets.QLineEdit.Password)
         #connecting buttons to functions when clicked
@@ -28,21 +30,42 @@ class LoginScreen(QDialog):
             conn = sqlite3.connect("auc_database.db")
             #connecting to the database
             cur = conn.cursor()
-            query = ('''SELECT password 
+            cur.execute('''SELECT password 
                         FROM users 
-                        WHERE username =\''+user+"\'
-                        ''')
-            cur.execute(query)
-            result_pass = cur.fetchone()[0]
-            if result_pass == password:
+                        WHERE username=?
+                        ''',(username,))
+            key = cur.fetchone()[0]
+
+            cur.execute('''SELECT salt 
+                        FROM users 
+                        WHERE username=?
+                        ''',(username,))
+            salt = cur.fetchone()[0]
+            # print(salt)
+
+            new_key = hashlib.pbkdf2_hmac(
+                'sha256',
+                password.encode('utf-8'),  # Convert the password to bytes
+                salt,
+                100000
+            )
+
+            # print(key)
+            # print(new_key)
+
+            if new_key == key:
                 #Comparing the password to see if it matches the one in the database
-                #This method allows for my planned iteration to incorporate a hash
-                print("Successfully logged in.")
+                # print("Successfully logged in.")
                 self.error.setText("")
 
+                cur.execute('SELECT userID FROM users WHERE username=?', (username,))
+                userID = cur.fetchall()
+                conn.close()
+                userID = int(userID[0][0])
+
                 self.close()
-                self.window = mainmenu(self.userID)
-                self.window.show()
+                self.mainwindow = mainmenu(userID)
+                self.mainwindow.show()
                 #PyQT has no way to clear text in dialogue boxes
             else:
                 self.error.setText("Invalid username or password")

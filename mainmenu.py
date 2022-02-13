@@ -9,27 +9,26 @@ import sqlite3
 
 
 class mainmenu(QDialog):
-    def __init__(self,uid):
+    def __init__(self, uid: object) -> object:
         super(mainmenu, self).__init__()
         loadUi("menu.ui",self)
         #connecting buttons to functions when clicked
         self.userID = uid
-        self.welcometoast(datetime.now().hour,self.userID)
-        self.login.clicked.connect(self.mainmenu)
+        self.now = datetime.now().hour
+        self.welcometoast()
 
-    def welcometoast(self,h):
-
+    def welcometoast(self) -> object:
         conn = sqlite3.connect("auc_database.db")
         cur = conn.cursor()
         cur.execute('SELECT firstname FROM users WHERE userID=?', (self.userID,))
         firstname = cur.fetchall()
 
-        if 5 <= h <= 11:
-            self.greetuser.setText("Good Morning ",firstname)
-        elif 12 <= h <= 17:
-            self.greetuser.setText("Good Afternoon ",firstname)
+        if 5 <= self.now <= 11:
+            self.greetuser.setText("Good Morning "+str((firstname)[0][0])+"!")
+        elif 12 <= self.now <= 17:
+            self.greetuser.setText("Good Afternoon "+str((firstname)[0][0])+"!")
         else:
-            self.greetuser.setText("Good Evening ",firstname)
+            self.greetuser.setText("Good Evening "+str((firstname)[0][0])+"!")
 
     def mainmenu(self):
         pass
