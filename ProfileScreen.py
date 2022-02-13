@@ -128,5 +128,5 @@ class FillProfileScreen(QDialog):
         x.insertuserinfo(user_info)
 
         self.close()
-        self.window = FillAddress()
+        self.window = FillAddress(self.userID)
         self.window.show()

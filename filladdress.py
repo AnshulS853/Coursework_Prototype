@@ -8,10 +8,13 @@ from PyQt5.QtGui import QPixmap
 import sqlite3
 import re
 
+from mainmenu import mainmenu
+
 class FillAddress(QDialog):
-    def __init__(self):
+    def __init__(self,uid):
         super(FillAddress, self).__init__()
         loadUi("address.ui",self)
+        self.userID = uid
         self.addsignup.clicked.connect(self.saveaddress)
 
     def validate_postcode(self,pc):
@@ -41,5 +44,10 @@ class FillAddress(QDialog):
                      "afieldtwo": self.addressfield2.text(),
                      "postcode": int(self.postcode.text()),
                      "county": self.county.text()}
+
+        self.close()
+        self.window = mainmenu(self.userID)
+        self.window.show()
+        pass
 
 

@@ -5,6 +5,7 @@ from PyQt5.QtWidgets import QDialog, QApplication, QWidget
 from PyQt5.QtGui import QPixmap
 
 import sqlite3
+from mainmenu import mainmenu
 
 class LoginScreen(QDialog):
     def __init__(self):
@@ -38,6 +39,10 @@ class LoginScreen(QDialog):
                 #This method allows for my planned iteration to incorporate a hash
                 print("Successfully logged in.")
                 self.error.setText("")
+
+                self.close()
+                self.window = mainmenu(self.userID)
+                self.window.show()
                 #PyQT has no way to clear text in dialogue boxes
             else:
                 self.error.setText("Invalid username or password")
