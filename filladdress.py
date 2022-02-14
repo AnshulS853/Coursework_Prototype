@@ -9,6 +9,7 @@ import sqlite3
 import re
 
 from mainmenu import mainmenu
+from adminmenu import adminmenu
 
 class FillAddress(QDialog):
     def __init__(self,uid):
@@ -40,13 +41,29 @@ class FillAddress(QDialog):
     def saveaddress(self):
         self.validate_postcode(str(self.postcode.text()))
 
-        user_address = {"afieldone": self.addressfield1.text(),
-                     "afieldtwo": self.addressfield2.text(),
-                     "postcode": int(self.postcode.text()),
-                     "county": self.county.text()}
+        # user_address = {"afieldone": self.addressfield1.text(),
+        #              "afieldtwo": self.addressfield2.text(),
+        #              "postcode": int(self.postcode.text()),
+        #              "county": self.county.text()}
 
-        self.close()
-        self.window = mainmenu(self.userID)
-        self.window.show()
+        user_address = (self.addressfield1.text(),
+                        self.addressfield2.text(),
+                        self.postcode.text(),
+                        self.county.text())
+
+        conn = sqlite3.connect("auc_database.db")
+        # connecting to the database
+        cur = conn.cursor()
+
+        cur.execute('SELECT admin FROM users WHERE userID=?', (self.userID,))
+        admin = cur.fetchone()
+        if admin[0][0] == 1:
+            self.close()
+            self.adminwindow = adminmenu(self.userID)
+            self.adminwindow.show()
+        else:
+            self.close()
+            self.mainwindow = mainmenu(self.userID)
+            self.mainwindow.show()
 
 

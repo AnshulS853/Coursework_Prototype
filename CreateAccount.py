@@ -7,6 +7,7 @@ from PyQt5.QtGui import QPixmap
 import sqlite3
 import hashlib
 import os
+import re
 from ProfileScreen import FillProfileScreen
 
 class CreateAccScreen(QDialog):
@@ -19,9 +20,24 @@ class CreateAccScreen(QDialog):
         self.signup.clicked.connect(self.signupfunction)
         self.userID = 0
 
+    def validatepass(self,password):
+        while True:
+            if len(password) < 8:
+                self.error.setText("Make sure your password is at lest 8 letters")
+                self.signup.clicked.connect(self.signupfunction)
+            elif re.search('[0-9]', password) is None:
+                self.error.setText("Make sure your password has a number in it")
+                self.signup.clicked.connect(self.signupfunction)
+            elif re.search('[A-Z]', password) is None:
+                self.error.setText("Make sure your password has a capital letter in it")
+                self.signup.clicked.connect(self.signupfunction)
+            else:
+                break
+
     def signupfunction(self):
         username = self.usernamefield.text()
         password = self.passwordfield.text()
+        self.validatepass(password)
         confirmpassword = self.confirmpasswordfield.text()
 
         if len(username)==0 or len(password)==0 or len(confirmpassword)==0:

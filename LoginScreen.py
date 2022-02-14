@@ -7,6 +7,7 @@ from PyQt5.QtGui import QPixmap
 import sqlite3
 import hashlib
 from mainmenu import mainmenu
+from adminmenu import adminmenu
 
 class LoginScreen(QDialog):
     def __init__(self):
@@ -56,16 +57,21 @@ class LoginScreen(QDialog):
             if new_key == key:
                 #Comparing the password to see if it matches the one in the database
                 # print("Successfully logged in.")
-                self.error.setText("")
 
                 cur.execute('SELECT userID FROM users WHERE username=?', (username,))
                 userID = cur.fetchall()
                 conn.close()
                 userID = int(userID[0][0])
-
-                self.close()
-                self.mainwindow = mainmenu(userID)
-                self.mainwindow.show()
+                cur.execute('SELECT admin FROM users WHERE userID=?', (userID,))
+                admin = cur.fetchone()
+                if admin[0][0] == 1:
+                    self.close()
+                    self.adminwindow = adminmenu(userID)
+                    self.adminwindow.show()
+                else:
+                    self.close()
+                    self.mainwindow = mainmenu(userID)
+                    self.mainwindow.show()
                 #PyQT has no way to clear text in dialogue boxes
             else:
                 self.error.setText("Invalid username or password")

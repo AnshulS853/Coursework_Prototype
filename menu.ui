@@ -196,6 +196,14 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
    </widget>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>createlisting</tabstop>
+  <tabstop>viewlistings</tabstop>
+  <tabstop>purchaseditems</tabstop>
+  <tabstop>updateaccount</tabstop>
+  <tabstop>sellerdashboard</tabstop>
+  <tabstop>myinvoices</tabstop>
+ </tabstops>
  <resources>
   <include location="placeholder.qrc"/>
  </resources>

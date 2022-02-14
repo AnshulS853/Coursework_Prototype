@@ -7,10 +7,10 @@ from PyQt5.QtGui import QPixmap
 from datetime import datetime
 import sqlite3
 
-class mainmenu(QDialog):
-    def __init__(self, uid: object):
-        super(mainmenu, self).__init__()
-        loadUi("menu.ui",self)
+class adminmenu(QDialog):
+    def __init__(self, uid: object) -> object:
+        super(adminmenu, self).__init__()
+        loadUi("adminmenu.ui",self)
         #connecting buttons to functions when clicked
         self.userID = uid
         self.now = datetime.now().hour
@@ -56,5 +56,6 @@ class mainmenu(QDialog):
 
     def myinvoices(self):
         pass
+
 
 
