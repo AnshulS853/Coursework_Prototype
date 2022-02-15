@@ -58,7 +58,7 @@ class CreateAccScreen(QDialog):
             cur = conn.cursor()
             cur.execute('SELECT COUNT(username) FROM users WHERE username=?',(username,))
             count = cur.fetchall()
-            if count[0][0] != 0:
+            if count[0] != 0:
                 self.error.setText("Username already exists")
                 self.signup.clicked.connect(self.signupfunction)
             else:
@@ -68,7 +68,7 @@ class CreateAccScreen(QDialog):
 
                 cur.execute('SELECT userID FROM users WHERE username=?', (username,))
                 userID = cur.fetchall()
-                self.userID = int(userID[0][0])
+                self.userID = int(userID[0])
 
                 conn.commit()
                 conn.close()

@@ -70,7 +70,7 @@ background-color:qlineargradient(spread:pad, x1:0.091, y1:0.101636, x2:0.991379,
      <string>Good &lt;Morning/Evening&gt; &lt;firstname&gt;</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="viewlistings">
+   <widget class="QPushButton" name="gotoview">
     <property name="geometry">
      <rect>
       <x>520</x>
@@ -88,7 +88,7 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
      <string>View Current Listings</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="purchaseditems">
+   <widget class="QPushButton" name="gotopurchased">
     <property name="geometry">
      <rect>
       <x>100</x>
@@ -106,7 +106,7 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
      <string>Purchased Items</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="updateaccount">
+   <widget class="QPushButton" name="gotoupdateacc">
     <property name="geometry">
      <rect>
       <x>520</x>
@@ -124,7 +124,7 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
      <string>Update Account Details</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="createlisting">
+   <widget class="QPushButton" name="gotocreate">
     <property name="geometry">
      <rect>
       <x>100</x>
@@ -142,7 +142,7 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
      <string>Create Listing</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="sellerdashboard">
+   <widget class="QPushButton" name="gotodashboard">
     <property name="geometry">
      <rect>
       <x>100</x>
@@ -160,7 +160,7 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
      <string>Seller Dashboard</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="myinvoices">
+   <widget class="QPushButton" name="gotoinvoices">
     <property name="geometry">
      <rect>
       <x>520</x>
@@ -197,12 +197,12 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
   </widget>
  </widget>
  <tabstops>
-  <tabstop>createlisting</tabstop>
-  <tabstop>viewlistings</tabstop>
-  <tabstop>purchaseditems</tabstop>
-  <tabstop>updateaccount</tabstop>
-  <tabstop>sellerdashboard</tabstop>
-  <tabstop>myinvoices</tabstop>
+  <tabstop>gotocreate</tabstop>
+  <tabstop>gotoview</tabstop>
+  <tabstop>gotopurchased</tabstop>
+  <tabstop>gotoupdateacc</tabstop>
+  <tabstop>gotodashboard</tabstop>
+  <tabstop>gotoinvoices</tabstop>
  </tabstops>
  <resources>
   <include location="placeholder.qrc"/>

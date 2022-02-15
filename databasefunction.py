@@ -20,7 +20,6 @@ class databaseclass:
         conn.commit()
         conn.close()
 
-
     def insertaddress(self,address):
         conn = sqlite3.connect("auc_database.db")
         cur = conn.cursor()
@@ -31,6 +30,6 @@ class databaseclass:
             postcode=?,
             county=?
             WHERE userID = (?)
-            ''',(address,self.userID))
+            ''',(address[0],address[1],address[2],address[3],self.userID))
         conn.commit()
         conn.close()

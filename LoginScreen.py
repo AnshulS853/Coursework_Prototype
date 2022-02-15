@@ -42,7 +42,6 @@ class LoginScreen(QDialog):
                         WHERE username=?
                         ''',(username,))
             salt = cur.fetchone()[0]
-            # print(salt)
 
             new_key = hashlib.pbkdf2_hmac(
                 'sha256',
@@ -59,18 +58,19 @@ class LoginScreen(QDialog):
                 # print("Successfully logged in.")
 
                 cur.execute('SELECT userID FROM users WHERE username=?', (username,))
-                userID = cur.fetchall()
-                conn.close()
-                userID = int(userID[0][0])
-                cur.execute('SELECT admin FROM users WHERE userID=?', (userID,))
+                self.userID = cur.fetchall()
+                self.userID = int(self.userID[0][0])
+                cur.execute('SELECT admin FROM users WHERE userID=?', (self.userID,))
                 admin = cur.fetchone()
-                if admin[0][0] == 1:
+                admin = int(admin[0])
+                conn.close()
+                if admin == 1:
                     self.close()
-                    self.adminwindow = adminmenu(userID)
+                    self.adminwindow = adminmenu(self.userID)
                     self.adminwindow.show()
                 else:
                     self.close()
-                    self.mainwindow = mainmenu(userID)
+                    self.mainwindow = mainmenu(self.userID)
                     self.mainwindow.show()
                 #PyQT has no way to clear text in dialogue boxes
             else:

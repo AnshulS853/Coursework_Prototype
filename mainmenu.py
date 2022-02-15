@@ -5,6 +5,7 @@ from PyQt5.QtWidgets import QDialog, QApplication, QWidget
 from PyQt5.QtGui import QPixmap
 
 from datetime import datetime
+from creationwindow import creationscreen
 import sqlite3
 
 class mainmenu(QDialog):
@@ -16,12 +17,12 @@ class mainmenu(QDialog):
         self.now = datetime.now().hour
         self.welcometoast()
 
-        self.creatlisting.clicked.connect(self.createlisting)
-        self.purchaseditems.clicked.connect(self.purchaseditems)
-        self.sellerdashboard.clicked.connect(self.sellerdashboard)
-        self.viewlistings.clicked.connect(self.viewlistings)
-        self.updateaccount.clicked.connect(self.updateaccount)
-        self.myinvoices.clicked.connect(self.myinvoices)
+        self.gotocreate.clicked.connect(self.createlisting)
+        self.gotopurchased.clicked.connect(self.purchaseditems)
+        self.gotodashboard.clicked.connect(self.sellerdashboard)
+        self.gotoview.clicked.connect(self.viewlistings)
+        self.gotoupdateacc.clicked.connect(self.updateaccount)
+        self.gotoinvoices.clicked.connect(self.myinvoices)
 
     def welcometoast(self):
         conn = sqlite3.connect("auc_database.db")
@@ -37,7 +38,9 @@ class mainmenu(QDialog):
             self.greetuser.setText("Good Evening "+str((firstname)[0][0])+"!")
 
     def createlisting(self):
-        pass
+        self.createwindow = creationscreen(self.userID)
+        self.createwindow.show()
+        self.close()
 
     def purchaseditems(self):
         pass
