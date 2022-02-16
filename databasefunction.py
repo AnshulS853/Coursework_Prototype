@@ -1,5 +1,4 @@
 import sqlite3
-from dictfactory import dict_factory
 
 class databaseclass:
     def __init__(self,uid):

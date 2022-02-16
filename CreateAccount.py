@@ -20,24 +20,24 @@ class CreateAccScreen(QDialog):
         self.signup.clicked.connect(self.signupfunction)
         self.userID = 0
 
-    def validatepass(self,password):
-        while True:
-            if len(password) < 8:
-                self.error.setText("Make sure your password is at lest 8 letters")
-                self.signup.clicked.connect(self.signupfunction)
-            elif re.search('[0-9]', password) is None:
-                self.error.setText("Make sure your password has a number in it")
-                self.signup.clicked.connect(self.signupfunction)
-            elif re.search('[A-Z]', password) is None:
-                self.error.setText("Make sure your password has a capital letter in it")
-                self.signup.clicked.connect(self.signupfunction)
-            else:
-                break
+    # def validatepass(self,password):
+    #     while True:
+    #         if len(password) < 8:
+    #             self.error.setText("Make sure your password is at lest 8 letters")
+    #             self.signup.clicked.connect(self.signupfunction)
+    #         elif re.search('[0-9]', password) is None:
+    #             self.error.setText("Make sure your password has a number in it")
+    #             self.signup.clicked.connect(self.signupfunction)
+    #         elif re.search('[A-Z]', password) is None:
+    #             self.error.setText("Make sure your password has a capital letter in it")
+    #             self.signup.clicked.connect(self.signupfunction)
+    #         else:
+    #             break
 
     def signupfunction(self):
         username = self.usernamefield.text()
         password = self.passwordfield.text()
-        self.validatepass(password)
+        # self.validatepass(password)
         confirmpassword = self.confirmpasswordfield.text()
 
         if len(username)==0 or len(password)==0 or len(confirmpassword)==0:
@@ -58,7 +58,7 @@ class CreateAccScreen(QDialog):
             cur = conn.cursor()
             cur.execute('SELECT COUNT(username) FROM users WHERE username=?',(username,))
             count = cur.fetchall()
-            if count[0] != 0:
+            if count[0][0] != 0:
                 self.error.setText("Username already exists")
                 self.signup.clicked.connect(self.signupfunction)
             else:
@@ -68,7 +68,7 @@ class CreateAccScreen(QDialog):
 
                 cur.execute('SELECT userID FROM users WHERE username=?', (username,))
                 userID = cur.fetchall()
-                self.userID = int(userID[0])
+                self.userID = int(userID[0][0])
 
                 conn.commit()
                 conn.close()

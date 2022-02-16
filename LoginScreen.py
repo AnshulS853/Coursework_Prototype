@@ -31,48 +31,55 @@ class LoginScreen(QDialog):
             conn = sqlite3.connect("auc_database.db")
             #connecting to the database
             cur = conn.cursor()
-            cur.execute('''SELECT password 
-                        FROM users 
-                        WHERE username=?
-                        ''',(username,))
-            key = cur.fetchone()[0]
-
-            cur.execute('''SELECT salt 
-                        FROM users 
-                        WHERE username=?
-                        ''',(username,))
-            salt = cur.fetchone()[0]
-
-            new_key = hashlib.pbkdf2_hmac(
-                'sha256',
-                password.encode('utf-8'),  # Convert the password to bytes
-                salt,
-                100000
-            )
-
-            # print(key)
-            # print(new_key)
-
-            if new_key == key:
-                #Comparing the password to see if it matches the one in the database
-                # print("Successfully logged in.")
-
-                cur.execute('SELECT userID FROM users WHERE username=?', (username,))
-                self.userID = cur.fetchall()
-                self.userID = int(self.userID[0][0])
-                cur.execute('SELECT admin FROM users WHERE userID=?', (self.userID,))
-                admin = cur.fetchone()
-                admin = int(admin[0])
-                conn.close()
-                if admin == 1:
-                    self.close()
-                    self.adminwindow = adminmenu(self.userID)
-                    self.adminwindow.show()
-                else:
-                    self.close()
-                    self.mainwindow = mainmenu(self.userID)
-                    self.mainwindow.show()
-                #PyQT has no way to clear text in dialogue boxes
+            cur.execute('SELECT COUNT(password) FROM users WHERE username=?', (username,))
+            count = cur.fetchall()
+            if count[0][0] == 0:
+                self.error.setText("Username does not exist")
+                self.login.clicked.connect(self.loginfunction)
             else:
-                self.error.setText("Invalid username or password")
+                cur.execute('''SELECT password 
+                            FROM users 
+                            WHERE username=?
+                            ''', (username,))
+                key = cur.fetchone()[0]
+
+                cur.execute('''
+                            SELECT salt 
+                            FROM users 
+                            WHERE username=?
+                            ''',(username,))
+                salt = cur.fetchone()[0]
+
+                new_key = hashlib.pbkdf2_hmac(
+                    'sha256',
+                    password.encode('utf-8'),  # Convert the password to bytes
+                    salt,
+                    100000
+                )
+
+                # print(key)
+                # print(new_key)
+
+                if new_key == key:
+                    #Comparing the password to see if it matches the one in the database
+                    # print("Successfully logged in.")
+
+                    cur.execute('SELECT userID FROM users WHERE username=?', (username,))
+                    self.userID = cur.fetchall()
+                    self.userID = int(self.userID[0][0])
+                    cur.execute('SELECT admin FROM users WHERE userID=?', (self.userID,))
+                    admin = cur.fetchone()
+                    admin = int(admin[0])
+                    conn.close()
+                    if admin == 1:
+                        self.close()
+                        self.adminwindow = adminmenu(self.userID)
+                        self.adminwindow.show()
+                    else:
+                        self.close()
+                        self.mainwindow = mainmenu(self.userID)
+                        self.mainwindow.show()
+                    #PyQT has no way to clear text in dialogue boxes
+                else:
+                    self.error.setText("Invalid username or password")
 
