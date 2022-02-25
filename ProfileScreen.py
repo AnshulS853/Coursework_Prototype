@@ -69,10 +69,13 @@ class FillProfileScreen(QDialog):
             self.firstnameerror.setText("Your lastname must be less than 12 characters and cannot be alphanumeric")
             self.signupcontinue.clicked.connect(self.saveprofile)
 
+        dob = self.dob.date().toPyDate()
+        dob = dob.datetime.strftime('%d-%m-%Y')
+
         user_info = (firstname,
                      lastname,
                      self.email.text(),
-                     self.dob.date().toPyDate(),
+                     dob,
                      int(gender))
 
         # if len(user_info["firstname"]) > 12 or self.checknumeric(user_info["firstname"])==True:

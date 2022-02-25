@@ -4,7 +4,7 @@ from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QDialog, QApplication, QWidget
 from PyQt5.QtGui import QPixmap
 
-from datetime import datetime
+from datetime import datetime, timedelta
 import sqlite3
 
 class creationscreen(QDialog):
@@ -35,6 +35,13 @@ class creationscreen(QDialog):
 
         duration = self.duration.text()
         durationunits = self.durationunits.currentText()
+
+        price = self.price.text()
+
+        if self.title.text()=="" or self.itemdesc.text()=="" or duration=="" or price=="":
+            self.error.setText("Please fill in all fields")
+            self.continuepage.clicked.connect(self.createwindow)
+
         if (type(duration) != int) or (duration < 0):
             self.error.setText("Duration must be an integer and cannot be negative")
             self.continuepage.clicked.connect(self.createwindow)
@@ -59,14 +66,12 @@ class creationscreen(QDialog):
             self.error.setText("You must accept to the terms to use this service")
             self.continuepage.clicked.connect(self.createwindow)
 
-        now = datetime.now()
-        now = datetime.strptime(now, "%d/%m/%y")
         if durationunits == "Days":
-            self.end_date = now + datetime.timedelta(days=duration)
+            self.end_date = datetime.now() + timedelta(days = duration)
         elif durationunits == "Months":
-            self.end_date = now + datetime.timedelta(months=duration)
+            self.end_date = datetime.now() + timedelta(months = duration)
         elif durationunits == "Years":
-            self.end_date = now + datetime.timedelta(years=duration)
+            self.end_date = datetime.now() + timedelta(years = duration)
 
         listing_info = (self.title.text(),
                         description,
@@ -76,9 +81,11 @@ class creationscreen(QDialog):
                         duration,
                         durationunits,
                         self.end_date,
-                        self.price.text(),
+                        price,
                         self.deliveryoption.currentText(),
                         self.acceptcondition.text())
+
+        print(listing_info)
         #In order of (title,desc,category,format,duration,units,enddate,delivery,accepttos)
 
 
