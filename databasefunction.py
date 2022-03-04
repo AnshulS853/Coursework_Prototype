@@ -1,13 +1,13 @@
 import sqlite3
 
-class databaseclass:
+class databaseClass:
     def __init__(self,uid):
         self.userID = uid
+        self.conn = sqlite3.connect("auc_database.db")
+        self.cur = self.conn.cursor()
 
     def insertuserinfo(self,user_info):
-        conn = sqlite3.connect("auc_database.db")
-        cur = conn.cursor()
-        cur.execute('''
+        self.cur.execute('''
             UPDATE users
             SET firstname=?,
             lastname=?,
@@ -16,13 +16,12 @@ class databaseclass:
             gender=?
             WHERE userID = (?)
         ''',(user_info[0],user_info[1],user_info[2],user_info[3],user_info[4],self.userID))
-        conn.commit()
-        conn.close()
+        self.conn.commit()
+        self.conn.close()
+
 
     def insertaddress(self,address):
-        conn = sqlite3.connect("auc_database.db")
-        cur = conn.cursor()
-        cur.execute('''
+        self.cur.execute('''
             UPDATE address
             SET address1=?,
             address2=?,
@@ -30,5 +29,5 @@ class databaseclass:
             county=?
             WHERE userID = (?)
             ''',(address[0],address[1],address[2],address[3],self.userID))
-        conn.commit()
-        conn.close()
+        self.conn.commit()
+        self.conn.close()

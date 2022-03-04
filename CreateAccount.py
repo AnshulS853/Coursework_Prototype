@@ -47,11 +47,10 @@ class CreateAccScreen(QDialog):
             self.error.setText("Passwords do not match.")
         else:
             salt = os.urandom(32) # generating a salt to provide further security
-            key = hashlib.pbkdf2_hmac(
-                'sha256',  # The hash digest algorithm for HMAC
-                password.encode('utf-8'),  # Convert the password to bytes
-                salt,  # Provide the salt
-                100000  # It is recommended to use at least 100,000 iterations of SHA-256
+            key = ('sha256',  # The hash digest algorithm for HMAC
+                    password.encode('utf-8'),  # Convert the password to bytes
+                    salt,  # Provide the salt
+                    100000  # It is recommended to use at least 100,000 iterations of SHA-256
             )
 
             conn = sqlite3.connect("auc_database.db")

@@ -30,13 +30,12 @@ class FillAddress(QDialog):
         elif len(pc.replace(" ", "")) == 7:
             pattern = re.compile("^[a-zA-Z]{2}[0-9]{3}[a-zA-Z]{2}")
 
-        if pattern != 'not matched':
-            if pattern.match(pc):
-                pass
-        else:
+        if pattern == 'not matched':
             self.postcodeerror.setText("This is an invalid UK postcode")
             self.addsignup.clicked.connect(self.saveaddress)
-
+        else:
+            if pattern.match(pc):
+                pass
 
     def saveaddress(self):
         self.validate_postcode(str(self.postcode.text()))
