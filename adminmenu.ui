@@ -124,7 +124,7 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
      <string>Update Account Details</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="createlisting">
+   <widget class="QPushButton" name="gotocreate">
     <property name="geometry">
      <rect>
       <x>100</x>

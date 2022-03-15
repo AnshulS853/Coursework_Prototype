@@ -54,7 +54,7 @@ background-color:qlineargradient(spread:pad, x1:0.091, y1:0.101636, x2:0.991379,
      <string>Fill in your profile</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_2">
+   <widget class="QLabel" name="filltoast">
     <property name="geometry">
      <rect>
       <x>100</x>

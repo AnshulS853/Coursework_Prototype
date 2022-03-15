@@ -5,23 +5,26 @@ from PyQt5.QtWidgets import QDialog, QApplication, QWidget
 from PyQt5.QtGui import QPixmap
 
 from datetime import datetime
+from creationwindow import creationscreen
+from manageaccounts import manageaccounts
+# from ProfileScreen import FillProfileScreen
 import sqlite3
 
 class adminmenu(QDialog):
-    def __init__(self, uid: object) -> object:
+    def __init__(self, uid: object):
         super(adminmenu, self).__init__()
         loadUi("adminmenu.ui",self)
-        #connecting buttons to functions when clicked
         self.userID = uid
         self.now = datetime.now().hour
         self.welcometoast()
 
-        self.creatlisting.clicked.connect(self.createlisting)
-        self.purchaseditems.clicked.connect(self.purchaseditems)
-        self.sellerdashboard.clicked.connect(self.sellerdashboard)
-        self.viewlistings.clicked.connect(self.viewlistings)
-        self.updateaccount.clicked.connect(self.updateaccount)
-        self.myinvoices.clicked.connect(self.myinvoices)
+        # self.gotocreate.clicked.connect(self.createlisting)
+        # self.gotopurchased.clicked.connect(self.purchaseditems)
+        # self.gotodashboard.clicked.connect(self.sellerdashboard)
+        # self.gotoview.clicked.connect(self.viewlistings)
+        # self.gotoupdateacc.clicked.connect(self.updateaccount)
+        # self.gotoinvoices.clicked.connect(self.myinvoices)
+        self.manageaccounts.clicked.connect(self.manageaccs)
 
     def welcometoast(self):
         conn = sqlite3.connect("auc_database.db")
@@ -36,26 +39,39 @@ class adminmenu(QDialog):
         else:
             self.greetuser.setText("Good Evening "+str((firstname)[0][0])+"!")
 
-    def createlisting(self):
-        pass
+    # def createlisting(self):
+    #     self.createwindow = creationscreen(self.userID)
+    #     self.createwindow.show()
+    #     self.close()
+    #
+    # def purchaseditems(self):
+    #     pass
+    #
+    # def sellerdashboard(self):
+    #
+    #     pass
+    #
+    # def viewlistings(self):
+    #     pass
+    #
+    # def updateaccount(self):
+    #     # checkupdate = True
+    #     # self.updateaccount = FillProfileScreen(self.userID, checkupdate)
+    #     # self.updateaccount.show()
+    #     # self.close()
+    #     pass
+    #
+    # def updateaccount(self):
+    #     pass
+    #
+    # def myinvoices(self):
+    #     pass
 
-    def purchaseditems(self):
-        pass
+    def manageaccs(self):
+        self.manageaccs = manageaccounts()
+        self.manageaccs.show()
+        self.close()
 
-    def sellerdashboard(self):
-        pass
-
-    def viewlistings(self):
-        pass
-
-    def updateaccount(self):
-        pass
-
-    def updateaccount(self):
-        pass
-
-    def myinvoices(self):
-        pass
 
 
 

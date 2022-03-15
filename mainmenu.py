@@ -6,13 +6,13 @@ from PyQt5.QtGui import QPixmap
 
 from datetime import datetime
 from creationwindow import creationscreen
+# from ProfileScreen import FillProfileScreen
 import sqlite3
 
 class mainmenu(QDialog):
     def __init__(self, uid: object):
         super(mainmenu, self).__init__()
         loadUi("menu.ui",self)
-        #connecting buttons to functions when clicked
         self.userID = uid
         self.now = datetime.now().hour
         self.welcometoast()
@@ -46,12 +46,17 @@ class mainmenu(QDialog):
         pass
 
     def sellerdashboard(self):
+
         pass
 
     def viewlistings(self):
         pass
 
     def updateaccount(self):
+        # checkupdate = True
+        # self.updateaccount = FillProfileScreen(self.userID, checkupdate)
+        # self.updateaccount.show()
+        # self.close()
         pass
 
     def updateaccount(self):

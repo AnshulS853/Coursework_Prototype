@@ -16,11 +16,17 @@ from databasefunction import databaseClass
 regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
 
 class FillProfileScreen(QDialog):
-    def __init__(self,uid):
+    def __init__(self, uid, cu=False):
         super(FillProfileScreen, self).__init__()
         loadUi("fillprofile.ui",self)
-        self.signupcontinue.clicked.connect(self.saveprofile)
+        self.checkupdate = cu
         self.userID = uid
+        self.updatetoast()
+        self.signupcontinue.clicked.connect(self.saveprofile)
+
+    def updatetoast(self):
+        if self.checkupdate == True:
+            self.filltoast.setText("Update your account details")
 
     def checknumeric(self,s):
         return any(i.isdigit() for i in s)
