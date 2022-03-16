@@ -75,29 +75,41 @@ class FillProfileScreen(QDialog):
             self.firstnameerror.setText("Your lastname must be less than 12 characters and cannot be alphanumeric")
             self.signupcontinue.clicked.connect(self.saveprofile)
 
-        user_info = (firstname,
-                     lastname,
-                     self.email.text(),
-                     self.dob.date().toPyDate(),
-                     int(gender))
+        email = self.email.text()
 
         # filladdress = FillAddress()
         # widget = QtWidgets.QStackedWidget()
         # widget.addWidget(filladdress)
         # widget.setCurrentIndex(widget.currentIndex() + 1)
 
-        if (re.search(regex, user_info[2])):
+        if (re.search(regex, email[2])):
             pass
         else:
             self.emailerror.setText("Invalid email format")
             self.signupcontinue.clicked.connect(self.saveprofile)
 
-        user_age = self.calculate_age(user_info[3])
+
+        conn = sqlite3.connect("auc_database.db")
+        cur = conn.cursor()
+        cur.execute('SELECT COUNT(email) FROM users WHERE email=?', (email,))
+        count = cur.fetchall()
+        conn.close()
+        if count[0][0] != 0:
+            self.emailerror.setText("email already exists")
+            self.signupcontinue.clicked.connect(self.saveprofile)
+
+        dob = self.dob.date().toPyDate()
+        user_age = self.calculate_age(dob)
 
         if user_age <= 13:
             self.doberror.setText("You have to be over 13 to create an account")
             self.signupcontinue.clicked.connect(self.saveprofile)
 
+        user_info = (firstname,
+                     lastname,
+                     email,
+                     dob,
+                     int(gender))
 
         x = databaseClass(self.userID)
         x.insertuserinfo(user_info)

@@ -18,7 +18,7 @@ class adminmenu(QDialog):
         self.now = datetime.now().hour
         self.welcometoast()
 
-        # self.gotocreate.clicked.connect(self.createlisting)
+        self.gotocreate.clicked.connect(self.createlisting)
         # self.gotopurchased.clicked.connect(self.purchaseditems)
         # self.gotodashboard.clicked.connect(self.sellerdashboard)
         # self.gotoview.clicked.connect(self.viewlistings)
@@ -39,10 +39,10 @@ class adminmenu(QDialog):
         else:
             self.greetuser.setText("Good Evening "+str((firstname)[0][0])+"!")
 
-    # def createlisting(self):
-    #     self.createwindow = creationscreen(self.userID)
-    #     self.createwindow.show()
-    #     self.close()
+    def createlisting(self):
+        self.createwindow = creationscreen(self.userID)
+        self.createwindow.show()
+        self.close()
     #
     # def purchaseditems(self):
     #     pass

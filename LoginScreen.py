@@ -8,6 +8,7 @@ import sqlite3
 import hashlib
 from mainmenu import mainmenu
 from adminmenu import adminmenu
+from ProfileScreen import FillProfileScreen
 
 class LoginScreen(QDialog):
     def __init__(self):
@@ -67,19 +68,45 @@ class LoginScreen(QDialog):
                     cur.execute('SELECT userID FROM users WHERE username=?', (username,))
                     self.userID = cur.fetchall()
                     self.userID = int(self.userID[0][0])
-                    cur.execute('SELECT admin FROM users WHERE userID=?', (self.userID,))
-                    admin = cur.fetchone()
-                    admin = int(admin[0])
-                    conn.close()
-                    if admin == 1:
+
+                    cur.execute('SELECT firstname,lastname,email,dob,gender FROM users WHERE userID=?', (self.userID,))
+                    details = cur.fetchall()
+                    details = details[0]
+
+                    # cur.execute('SELECT houseno,addfield1,addfield2,postcode,county FROM address WHERE addressID=?', (self.addressID,))
+                    # addressdet = cur.fetchall()
+                    # addressdet = addressdet[0]
+
+                    # print(details)
+                    checkprofile = all(elem is None for elem in details)
+                    # checkaddress = all(elem is None for elem in addressdet)
+
+                    # print(checkprofile)
+
+                    if checkprofile == True:
                         self.close()
-                        self.adminwindow = adminmenu(self.userID)
-                        self.adminwindow.show()
+                        self.profilewindow = FillProfileScreen(self.userID)
+                        self.profilewindow.show()
+
+                    # elif checkaddress == True:
+                    #     self.close()
+                    #     self.addresswindow = adminmenu(self.userID)
+                    #     self.addresswindow.show()
+
                     else:
-                        self.close()
-                        self.mainwindow = mainmenu(self.userID)
-                        self.mainwindow.show()
-                    #PyQT has no way to clear text in dialogue boxes
+                        cur.execute('SELECT admin FROM users WHERE userID=?', (self.userID,))
+                        admin = cur.fetchone()
+                        admin = int(admin[0])
+                        conn.close()
+                        if admin == 1:
+                            self.close()
+                            self.adminwindow = adminmenu(self.userID)
+                            self.adminwindow.show()
+                        else:
+                            self.close()
+                            self.mainwindow = mainmenu(self.userID)
+                            self.mainwindow.show()
+                        #PyQT has no way to clear text in dialogue boxes
                 else:
                     self.error.setText("Invalid username or password")
 

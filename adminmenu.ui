@@ -38,115 +38,11 @@
     <string notr="true">QWidget#bgwidget{
 background-color:qlineargradient(spread:pad, x1:0.091, y1:0.101636, x2:0.991379, y2:0.977, stop:0 rgba(209, 107, 165, 255), stop:1 rgba(128, 0, 32, 255));}</string>
    </property>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>110</x>
-      <y>70</y>
-      <width>631</width>
-      <height>71</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font: 72pt &quot;MS Shell Dlg 2&quot;; color:rgb(255, 255, 255)</string>
-    </property>
-    <property name="text">
-     <string>Main Menu</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="greetuser">
-    <property name="geometry">
-     <rect>
-      <x>120</x>
-      <y>140</y>
-      <width>491</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font: 16pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
-    </property>
-    <property name="text">
-     <string>Good &lt;Morning/Evening&gt; &lt;firstname&gt;</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="viewlistings">
-    <property name="geometry">
-     <rect>
-      <x>520</x>
-      <y>260</y>
-      <width>341</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">border-radius:20px;
-background-color: rgb(230, 230, 250);
-font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
-    </property>
-    <property name="text">
-     <string>View Current Listings</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="purchaseditems">
-    <property name="geometry">
-     <rect>
-      <x>100</x>
-      <y>350</y>
-      <width>341</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">border-radius:20px;
-background-color: rgb(230, 230, 250);
-font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
-    </property>
-    <property name="text">
-     <string>Purchased Items</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="updateaccount">
-    <property name="geometry">
-     <rect>
-      <x>520</x>
-      <y>350</y>
-      <width>341</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">border-radius:20px;
-background-color: rgb(230, 230, 250);
-font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
-    </property>
-    <property name="text">
-     <string>Update Account Details</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="gotocreate">
-    <property name="geometry">
-     <rect>
-      <x>100</x>
-      <y>260</y>
-      <width>341</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">border-radius:20px;
-background-color: rgb(230, 230, 250);
-font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
-    </property>
-    <property name="text">
-     <string>Create Listing</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="manageaccounts">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>560</y>
+      <x>110</x>
+      <y>570</y>
       <width>341</width>
       <height>51</height>
      </rect>
@@ -163,8 +59,8 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QPushButton" name="managelistings">
     <property name="geometry">
      <rect>
-      <x>530</x>
-      <y>560</y>
+      <x>540</x>
+      <y>570</y>
       <width>341</width>
       <height>51</height>
      </rect>
@@ -181,8 +77,8 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>510</y>
+      <x>420</x>
+      <y>520</y>
       <width>161</width>
       <height>41</height>
      </rect>
@@ -194,11 +90,113 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
      <string>Administrator Tools</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="sellerdashboard">
+   <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>440</y>
+      <x>120</x>
+      <y>90</y>
+      <width>631</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 72pt &quot;MS Shell Dlg 2&quot;; color:rgb(255, 255, 255)</string>
+    </property>
+    <property name="text">
+     <string>Main Menu</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="greetuser">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>160</y>
+      <width>491</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 16pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
+    </property>
+    <property name="text">
+     <string>Good &lt;Morning/Evening&gt; &lt;firstname&gt;</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="gotopurchased">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>370</y>
+      <width>341</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius:20px;
+background-color: rgb(230, 230, 250);
+font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Purchased Items</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="gotocreate">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>280</y>
+      <width>341</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius:20px;
+background-color: rgb(230, 230, 250);
+font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Create Listing</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="gotoupdateacc">
+    <property name="geometry">
+     <rect>
+      <x>530</x>
+      <y>370</y>
+      <width>341</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius:20px;
+background-color: rgb(230, 230, 250);
+font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Update Account Details</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>220</y>
+      <width>221</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 16pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
+    </property>
+    <property name="text">
+     <string>Select an option to proceed</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="gotodashboard">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>460</y>
       <width>341</width>
       <height>51</height>
      </rect>
@@ -212,11 +210,29 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
      <string>Seller Dashboard</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="myinvoices">
+   <widget class="QPushButton" name="gotoview">
     <property name="geometry">
      <rect>
-      <x>520</x>
-      <y>440</y>
+      <x>530</x>
+      <y>280</y>
+      <width>341</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius:20px;
+background-color: rgb(230, 230, 250);
+font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
+    </property>
+    <property name="text">
+     <string>View Current Listings</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="gotoinvoices">
+    <property name="geometry">
+     <rect>
+      <x>530</x>
+      <y>460</y>
       <width>341</width>
       <height>51</height>
      </rect>
@@ -228,22 +244,6 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
      <string>My Invoices</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_4">
-    <property name="geometry">
-     <rect>
-      <x>380</x>
-      <y>200</y>
-      <width>221</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font: 16pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
-    </property>
-    <property name="text">
-     <string>Select an option to proceed</string>
     </property>
    </widget>
   </widget>
