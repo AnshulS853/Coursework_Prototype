@@ -82,7 +82,7 @@ class FillProfileScreen(QDialog):
         # widget.addWidget(filladdress)
         # widget.setCurrentIndex(widget.currentIndex() + 1)
 
-        if (re.search(regex, email[2])):
+        if (re.search(regex, email)):
             pass
         else:
             self.emailerror.setText("Invalid email format")

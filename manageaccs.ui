@@ -115,7 +115,7 @@ background-color:qlineargradient(spread:pad, x1:0.091, y1:0.101636, x2:0.991379,
      </property>
     </column>
    </widget>
-   <widget class="QPushButton" name="gotocreate">
+   <widget class="QPushButton" name="deleteacc">
     <property name="geometry">
      <rect>
       <x>750</x>
@@ -133,7 +133,7 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
      <string>Delete Account</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="gotocreate_2">
+   <widget class="QPushButton" name="setadmin">
     <property name="geometry">
      <rect>
       <x>750</x>
@@ -151,7 +151,7 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
      <string>Set Admin</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="gotocreate_3">
+   <widget class="QPushButton" name="remadmin">
     <property name="geometry">
      <rect>
       <x>750</x>
@@ -187,7 +187,7 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
 &lt;user&gt;</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="gotocreate_4">
+   <widget class="QPushButton" name="confirmchoice">
     <property name="geometry">
      <rect>
       <x>760</x>
