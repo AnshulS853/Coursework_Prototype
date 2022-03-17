@@ -174,7 +174,7 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
      <rect>
       <x>730</x>
       <y>510</y>
-      <width>191</width>
+      <width>201</width>
       <height>131</height>
      </rect>
     </property>
@@ -185,6 +185,9 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
      <string>&lt;Deleting/Making/Removing&gt;
 &lt;account/admin&gt; from
 &lt;user&gt;</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QPushButton" name="confirmchoice">

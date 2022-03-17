@@ -64,7 +64,7 @@ class CreateAccScreen(QDialog):
                 self.signup.clicked.connect(self.signupfunction)
             else:
                 user_info = (username, key, salt)
-                print(user_info)
+                # print(user_info)
                 cur.execute('''INSERT INTO users (admin, username, password, salt)
                                VALUES (0,?,?,?)''', user_info)
 

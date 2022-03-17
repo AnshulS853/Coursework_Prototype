@@ -6,7 +6,7 @@ from PyQt5.QtGui import QPixmap
 
 from datetime import datetime
 from creationwindow import creationscreen
-from manageaccounts import manageaccounts
+from manageaccounts import manageAccounts
 # from ProfileScreen import FillProfileScreen
 import sqlite3
 
@@ -68,7 +68,7 @@ class adminmenu(QDialog):
     #     pass
 
     def manageaccs(self):
-        self.manageaccs = manageaccounts()
+        self.manageaccs = manageAccounts()
         self.manageaccs.show()
         self.close()
 
