@@ -11,13 +11,14 @@ import re
 from ProfileScreen import FillProfileScreen
 
 class CreateAccScreen(QDialog):
-    def __init__(self):
+    def __init__(self,app):
         super(CreateAccScreen, self).__init__()
         loadUi("createacc.ui",self)
         # Hides the password when typing into the field
         self.passwordfield.setEchoMode(QtWidgets.QLineEdit.Password)
         self.confirmpasswordfield.setEchoMode(QtWidgets.QLineEdit.Password)
         self.signup.clicked.connect(self.signupfunction)
+        self.app = app
         self.userID = 0
 
     # def validatepass(self,password):
@@ -76,8 +77,8 @@ class CreateAccScreen(QDialog):
                 conn.close()
 
                 self.close()
-                self.window = FillProfileScreen(self.userID)
-                self.window.show()
+                self.app.callProfileScreen(self.userID)
+
 
 
 

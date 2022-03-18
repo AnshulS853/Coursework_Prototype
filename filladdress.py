@@ -12,9 +12,10 @@ from mainmenu import mainmenu
 from adminmenu import adminmenu
 
 class FillAddress(QDialog):
-    def __init__(self,uid):
+    def __init__(self,app,uid):
         super(FillAddress, self).__init__()
         loadUi("address.ui",self)
+        self.app = app
         self.userID = uid
         self.addsignup.clicked.connect(self.saveaddress)
 

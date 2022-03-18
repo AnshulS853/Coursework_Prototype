@@ -6,14 +6,15 @@ from PyQt5.QtGui import QPixmap
 
 import sqlite3
 import hashlib
-from mainmenu import mainmenu
-from adminmenu import adminmenu
+# from mainmenu import mainmenu
+# from adminmenu import adminmenu
 from ProfileScreen import FillProfileScreen
 
 class LoginScreen(QDialog):
-    def __init__(self):
+    def __init__(self,app):
         super(LoginScreen, self).__init__()
         loadUi("login.ui",self)
+        self.app = app
         self.userID = 0
         # Hides the password when typing into the field
         self.passwordfield.setEchoMode(QtWidgets.QLineEdit.Password)
@@ -85,8 +86,7 @@ class LoginScreen(QDialog):
 
                     if checkprofile == True:
                         self.close()
-                        self.profilewindow = FillProfileScreen(self.userID)
-                        self.profilewindow.show()
+                        self.app.callProfileScreen(self.userID)
 
                     # elif checkaddress == True:
                     #     self.close()
@@ -98,15 +98,18 @@ class LoginScreen(QDialog):
                         admin = cur.fetchone()
                         admin = int(admin[0])
                         conn.close()
+
                         if admin == 1:
                             self.close()
-                            self.adminwindow = adminmenu(self.userID)
-                            self.adminwindow.show()
+                            # self.adminwindow = adminmenu(self.userID)
+                            # self.adminwindow.show()
+                            self.app.callAdminWindow(self.userID)
                         else:
                             self.close()
-                            self.mainwindow = mainmenu(self.userID)
-                            self.mainwindow.show()
-                        #PyQT has no way to clear text in dialogue boxes
+                            # self.mainwindow = mainmenu(self.userID)
+                            # self.mainwindow.show()
+                            self.app.callMainWindow(self.userID)
                 else:
                     self.error.setText("Invalid username or password")
+                    # PyQT has no way to clear text in dialogue boxes
 

@@ -10,9 +10,10 @@ from creationwindow import creationscreen
 import sqlite3
 
 class mainmenu(QDialog):
-    def __init__(self, uid: object):
+    def __init__(self,app,uid: object):
         super(mainmenu, self).__init__()
         loadUi("menu.ui",self)
+        self.app = app
         self.userID = uid
         self.now = datetime.now().hour
         self.welcometoast()
@@ -38,9 +39,8 @@ class mainmenu(QDialog):
             self.greetuser.setText("Good Evening "+str((firstname)[0][0])+"!")
 
     def createlisting(self):
-        self.createwindow = creationscreen(self.userID)
-        self.createwindow.show()
         self.close()
+        self.app.callCreationWindow()
 
     def purchaseditems(self):
         pass

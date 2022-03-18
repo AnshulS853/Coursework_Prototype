@@ -11,13 +11,13 @@ from manageaccounts import manageAccounts
 import sqlite3
 
 class adminmenu(QDialog):
-    def __init__(self, uid: object):
+    def __init__(self,app,uid: object):
         super(adminmenu, self).__init__()
         loadUi("adminmenu.ui",self)
+        self.app = app
         self.userID = uid
         self.now = datetime.now().hour
         self.welcometoast()
-
         self.gotocreate.clicked.connect(self.createlisting)
         # self.gotopurchased.clicked.connect(self.purchaseditems)
         # self.gotodashboard.clicked.connect(self.sellerdashboard)
@@ -40,9 +40,9 @@ class adminmenu(QDialog):
             self.greetuser.setText("Good Evening "+str((firstname)[0][0])+"!")
 
     def createlisting(self):
-        self.createwindow = creationscreen(self.userID)
-        self.createwindow.show()
         self.close()
+        self.app.callCreationWindow()
+
     #
     # def purchaseditems(self):
     #     pass
@@ -68,9 +68,8 @@ class adminmenu(QDialog):
     #     pass
 
     def manageaccs(self):
-        self.manageaccs = manageAccounts()
-        self.manageaccs.show()
         self.close()
+        self.app.callManageAccs()
 
 
 

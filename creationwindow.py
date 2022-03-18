@@ -8,10 +8,11 @@ from datetime import datetime, timedelta
 import sqlite3
 
 class creationscreen(QDialog):
-    def __init__(self, uid):
+    def __init__(self,app,uid):
         super(creationscreen, self).__init__()
         loadUi("createlisting.ui",self)
         #connecting buttons to functions when clicked
+        self.app = app
         self.userID = uid
         self.continuepage.clicked.connect(self.createwindow)
 

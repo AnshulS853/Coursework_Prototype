@@ -4,51 +4,16 @@ from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QDialog, QApplication, QWidget
 from PyQt5.QtGui import QPixmap
 
-# importing all the main window functions to main file to be called
-from LoginScreen import LoginScreen
-from CreateAccount import CreateAccScreen
+from app import appClass
 
-class WelcomeScreen(QDialog):
-    def __init__(self):
-        # Constructor function for the welcome screen
-        super(WelcomeScreen, self).__init__()
-        loadUi("welcomescreen.ui", self)
-        # connecting buttons to functions when clicked
-        self.login.clicked.connect(self.gotologin)
-        self.create.clicked.connect(self.gotocreate)
+sys._excepthook = sys.excepthook
 
-    def gotologin(self):
-        self.login = LoginScreen()
-        # widget.addWidget(login)
-        # widget.setCurrentIndex(widget.currentIndex()+1)
-        self.login.show()
-        self.close()
+def my_exception_hook(exctype, value, traceback):
+    print(exctype, value, traceback)
+    sys._excepthook(exctype, value, traceback)
 
-    def gotocreate(self):
-        self.create = CreateAccScreen()
-        self.create.userID
-        # widget.addWidget(create)
-        # widget.setCurrentIndex(widget.currentIndex() + 1)
-        self.create.show()
-        self.close()
-
-
-# main
-# statements to load the welcome window when program run
-# app = QApplication(sys.argv)
-# welcome = WelcomeScreen()
-# widget = QtWidgets.QStackedWidget()
-# widget.addWidget(welcome)
-# widget.show()
-# try:
-#     sys.exit(app.exec_())
-# except:
-#     print("Exiting")
-
-app = QApplication(sys.argv)
-welcome = WelcomeScreen()
-welcome.show()
-try:
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    callApp = appClass(app)
+    callApp.callWelcomeScreen()
     sys.exit(app.exec_())
-except:
-    print("Exiting")
