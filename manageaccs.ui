@@ -182,7 +182,7 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
      <string notr="true">font: 16pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
     </property>
     <property name="text">
-     <string>&lt;Deleting/Making/Removing&gt;
+     <string>&lt;Deleting/Updating&gt;
 &lt;account/admin&gt; from
 &lt;user&gt;</string>
     </property>
@@ -206,6 +206,23 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
      <string>Confirm</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="backtoadmenu">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>80</y>
+      <width>81</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius:20px;
+font: 14pt &quot;MS Shell Dlg 2&quot;; color:rgb(255, 255, 255)</string>
+    </property>
+    <property name="text">
+     <string>&lt; Back</string>
     </property>
    </widget>
   </widget>

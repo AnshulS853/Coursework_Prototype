@@ -6,6 +6,7 @@ from CreateAccount import CreateAccScreen
 from ProfileScreen import FillProfileScreen
 from filladdress import FillAddress
 from manageaccounts import manageAccounts
+from creationwindow import creationScreen
 
 class appClass():
     def __init__(self,uid):
@@ -44,9 +45,9 @@ class appClass():
         self.mainwindow.show()
 
     def callCreationWindow(self):
-        self.creationwindow = manageAccounts(self,self.userID)
+        self.creationwindow = creationScreen(self,self.userID)
         self.creationwindow.show()
 
     def callManageAccs(self):
-        self.manageaccwindow = manageAccounts(self)
+        self.manageaccwindow = manageAccounts(self,self.userID)
         self.manageaccwindow.show()

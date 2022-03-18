@@ -8,16 +8,23 @@ import sqlite3
 
 
 class manageAccounts(QDialog):
-    def __init__(self,app):
+    def __init__(self,app,uid):
         super(manageAccounts, self).__init__()
         loadUi("manageaccs.ui", self)
         self.app = app
-        self.currentUserID = -1
+        self.userID = uid
+        self.currentUserID = None
         self.adminv = 0
         self.loadTable()
         self.deleteacc.clicked.connect(self.deleteuser)
         self.setadmin.clicked.connect(self.setuseradmin)
         self.remadmin.clicked.connect(self.removeuseradmin)
+        self.backtoadmenu.clicked.connect(self.gotoadmenu)
+        self.confirmtoast.setText(" ")
+
+    def gotoadmenu(self):
+        self.close()
+        self.app.callAdminWindow(self.userID)
 
     def fetchuserID(self):
         try: 

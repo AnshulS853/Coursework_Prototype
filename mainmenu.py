@@ -5,8 +5,6 @@ from PyQt5.QtWidgets import QDialog, QApplication, QWidget
 from PyQt5.QtGui import QPixmap
 
 from datetime import datetime
-from creationwindow import creationscreen
-# from ProfileScreen import FillProfileScreen
 import sqlite3
 
 class mainmenu(QDialog):

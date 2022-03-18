@@ -7,9 +7,9 @@ from PyQt5.QtGui import QPixmap
 from datetime import datetime, timedelta
 import sqlite3
 
-class creationscreen(QDialog):
+class creationScreen(QDialog):
     def __init__(self,app,uid):
-        super(creationscreen, self).__init__()
+        super(creationScreen, self).__init__()
         loadUi("createlisting.ui",self)
         #connecting buttons to functions when clicked
         self.app = app
