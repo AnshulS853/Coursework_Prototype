@@ -208,7 +208,7 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
      <string>Confirm</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="backtoadmenu">
+   <widget class="QPushButton" name="goback">
     <property name="geometry">
      <rect>
       <x>20</x>

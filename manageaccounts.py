@@ -19,7 +19,7 @@ class manageAccounts(QDialog):
         self.deleteacc.clicked.connect(self.deleteuser)
         self.setadmin.clicked.connect(self.setuseradmin)
         self.remadmin.clicked.connect(self.removeuseradmin)
-        self.backtoadmenu.clicked.connect(self.gotoadmenu)
+        self.goback.clicked.connect(self.gotoadmenu)
         self.confirmtoast.setText(" ")
 
     def gotoadmenu(self):
