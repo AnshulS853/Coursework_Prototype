@@ -9,8 +9,9 @@ from manageaccounts import manageAccounts
 from creationwindow import creationScreen
 
 class appClass():
-    def __init__(self,uid):
-        self.userID = uid
+    def __init__(self,app):
+        self.app = app
+        self.userID = None
 
     def callWelcomeScreen(self):
         self.welcomewindow = WelcomeScreen(self)
@@ -44,8 +45,8 @@ class appClass():
         self.mainwindow = mainmenu(self,self.userID)
         self.mainwindow.show()
 
-    def callCreationWindow(self):
-        self.creationwindow = creationScreen(self,self.userID)
+    def callCreationWindow(self,admin=0):
+        self.creationwindow = creationScreen(self,self.userID,admin)
         self.creationwindow.show()
 
     def callManageAccs(self):

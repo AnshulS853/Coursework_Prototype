@@ -24,6 +24,10 @@ class FillProfileScreen(QDialog):
         self.userID = uid
         self.updatetoast()
         self.signupcontinue.clicked.connect(self.saveprofile)
+        self.goback.clicked.connect(self.gobackwindow)
+
+    def gobackwindow(self):
+        pass
 
     def updatetoast(self):
         if self.checkupdate == True:

@@ -18,6 +18,7 @@ class CreateAccScreen(QDialog):
         self.passwordfield.setEchoMode(QtWidgets.QLineEdit.Password)
         self.confirmpasswordfield.setEchoMode(QtWidgets.QLineEdit.Password)
         self.signup.clicked.connect(self.signupfunction)
+        self.goback.clicked.connect(self.backtowelcome)
         self.app = app
         self.userID = 0
 
@@ -34,6 +35,10 @@ class CreateAccScreen(QDialog):
     #             self.signup.clicked.connect(self.signupfunction)
     #         else:
     #             break
+
+    def backtowelcome(self):
+        self.close()
+        self.app.callWelcomeScreen()
 
     def signupfunction(self):
         username = self.usernamefield.text()

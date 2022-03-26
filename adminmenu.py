@@ -38,7 +38,8 @@ class adminmenu(QDialog):
 
     def createlisting(self):
         self.close()
-        self.app.callCreationWindow()
+        admin = 1
+        self.app.callCreationWindow(admin)
 
     #
     # def purchaseditems(self):

@@ -20,6 +20,11 @@ class LoginScreen(QDialog):
         self.passwordfield.setEchoMode(QtWidgets.QLineEdit.Password)
         #connecting buttons to functions when clicked
         self.login.clicked.connect(self.loginfunction)
+        self.goback.clicked.connect(self.backtowelcome)
+
+    def backtowelcome(self):
+        self.close()
+        self.app.callWelcomeScreen()
 
     def loginfunction(self):
         #assinging the data input in text fields to variables

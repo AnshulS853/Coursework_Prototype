@@ -8,13 +8,23 @@ from datetime import datetime, timedelta
 import sqlite3
 
 class creationScreen(QDialog):
-    def __init__(self,app,uid):
+    def __init__(self,app,uid,admin):
         super(creationScreen, self).__init__()
         loadUi("createlisting.ui",self)
         #connecting buttons to functions when clicked
         self.app = app
         self.userID = uid
+        self.admin = admin
+        self.goback.clicked.connect(self.gobacktomenu)
         self.continuepage.clicked.connect(self.createwindow)
+
+    def gobacktomenu(self):
+        if self.admin==1:
+            self.close()
+            self.app.callAdminWindow(self.userID)
+        else:
+            self.close()
+            self.app.callMainWindow(self.userID)
 
     def selectoption(self,selectx):
         if selectx == "Select a Category" or selectx == "Select an Option":

@@ -203,8 +203,32 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
 font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="goback">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>20</y>
+      <width>81</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius:20px;
+font: 14pt &quot;MS Shell Dlg 2&quot;; color:rgb(255, 255, 255)</string>
+    </property>
+    <property name="text">
+     <string>&lt; Back</string>
+    </property>
+   </widget>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>usernamefield</tabstop>
+  <tabstop>passwordfield</tabstop>
+  <tabstop>confirmpasswordfield</tabstop>
+  <tabstop>signup</tabstop>
+  <tabstop>goback</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
