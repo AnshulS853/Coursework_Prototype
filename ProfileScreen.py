@@ -15,28 +15,39 @@ from databasefunction import databaseClass
 
 regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
 
+
 class FillProfileScreen(QDialog):
-    def __init__(self,app,uid, cu=False):
+    def __init__(self, app, uid, cu, admin):
         super(FillProfileScreen, self).__init__()
-        loadUi("fillprofile.ui",self)
+        loadUi("fillprofile.ui", self)
         self.app = app
         self.checkupdate = cu
         self.userID = uid
+        self.admin = admin
         self.updatetoast()
         self.signupcontinue.clicked.connect(self.saveprofile)
         self.goback.clicked.connect(self.gobackwindow)
 
     def gobackwindow(self):
-        pass
+        if self.checkupdate:
+            if self.admin:
+                self.close()
+                self.app.callAdminWindow(self.userID)
+            else:
+                self.close()
+                self.app.callMainWindow(self.userID)
+        else:
+            self.filltoast.setText("You cannot go back until fields are filled!")
+
 
     def updatetoast(self):
-        if self.checkupdate == True:
+        if self.checkupdate:
             self.filltoast.setText("Update your account details")
 
-    def checknumeric(self,s):
+    def checknumeric(self, s):
         return any(i.isdigit() for i in s)
 
-    def calculate_age(self,dateofb):
+    def calculate_age(self, dateofb):
         today = date.today()
         try:
             birthday = dateofb.replace(year=today.year)
@@ -64,7 +75,7 @@ class FillProfileScreen(QDialog):
         firstname = string.capwords(self.firstname.text())
         lastname = string.capwords(self.lastname.text())
 
-        if len(firstname) > 12 or self.checknumeric(firstname)==True:
+        if len(firstname) > 12 or self.checknumeric(firstname) == True:
             self.firstnameerror.setText("Your firstname must be less than 12 characters and cannot be alphanumeric")
             self.signupcontinue.clicked.connect(self.saveprofile)
 
@@ -76,7 +87,7 @@ class FillProfileScreen(QDialog):
             self.lastnameerror.setText("This field cannot be empty")
             self.signupcontinue.clicked.connect(self.saveprofile)
 
-        if len(lastname) > 12 or self.checknumeric(lastname)==True:
+        if len(lastname) > 12 or self.checknumeric(lastname) == True:
             self.firstnameerror.setText("Your lastname must be less than 12 characters and cannot be alphanumeric")
             self.signupcontinue.clicked.connect(self.saveprofile)
 
@@ -92,7 +103,6 @@ class FillProfileScreen(QDialog):
         else:
             self.emailerror.setText("Invalid email format")
             self.signupcontinue.clicked.connect(self.saveprofile)
-
 
         conn = sqlite3.connect("auc_database.db")
         cur = conn.cursor()

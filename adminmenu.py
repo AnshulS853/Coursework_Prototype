@@ -14,13 +14,15 @@ class adminmenu(QDialog):
         self.app = app
         self.userID = uid
         self.now = datetime.now().hour
+        self.admin = 1
         self.welcometoast()
+
         self.gotocreate.clicked.connect(self.createlisting)
-        # self.gotopurchased.clicked.connect(self.purchaseditems)
-        # self.gotodashboard.clicked.connect(self.sellerdashboard)
-        # self.gotoview.clicked.connect(self.viewlistings)
-        # self.gotoupdateacc.clicked.connect(self.updateaccount)
-        # self.gotoinvoices.clicked.connect(self.myinvoices)
+        self.gotopurchased.clicked.connect(self.purchaseditems)
+        self.gotodashboard.clicked.connect(self.sellerdashboard)
+        self.gotoview.clicked.connect(self.viewlistings)
+        self.gotoupdateacc.clicked.connect(self.updateaccount)
+        self.gotoinvoices.clicked.connect(self.myinvoices)
         self.manageaccounts.clicked.connect(self.manageaccs)
 
     def welcometoast(self):
@@ -38,32 +40,24 @@ class adminmenu(QDialog):
 
     def createlisting(self):
         self.close()
-        admin = 1
-        self.app.callCreationWindow(admin)
+        self.app.callCreationWindow(self.admin)
 
-    #
-    # def purchaseditems(self):
-    #     pass
-    #
-    # def sellerdashboard(self):
-    #
-    #     pass
-    #
-    # def viewlistings(self):
-    #     pass
-    #
-    # def updateaccount(self):
-    #     # checkupdate = True
-    #     # self.updateaccount = FillProfileScreen(self.userID, checkupdate)
-    #     # self.updateaccount.show()
-    #     # self.close()
-    #     pass
-    #
-    # def updateaccount(self):
-    #     pass
-    #
-    # def myinvoices(self):
-    #     pass
+    def updateaccount(self):
+        self.close()
+        check = True
+        self.app.callProfileScreen(self.userID,self.admin,check)
+
+    def purchaseditems(self):
+        pass
+
+    def sellerdashboard(self):
+        pass
+
+    def viewlistings(self):
+        pass
+
+    def myinvoices(self):
+        pass
 
     def manageaccs(self):
         self.close()
