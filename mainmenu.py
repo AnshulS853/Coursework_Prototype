@@ -55,9 +55,6 @@ class mainmenu(QDialog):
         self.close()
         self.app.callProfileScreen(self.userID)
 
-    def updateaccount(self):
-        pass
-
     def myinvoices(self):
         pass
 

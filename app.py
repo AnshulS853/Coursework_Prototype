@@ -25,25 +25,27 @@ class appClass():
         self.create = CreateAccScreen(self)
         self.create.show()
 
-    def callProfileScreen(self,userID,admin=False,check=False):
+    def callProfileScreen(self,userID,check=False,admin=False):
         self.userID = userID
-        checkadmin = admin
-        checkupdate = check
-        self.profilewindow = FillProfileScreen(self,self.userID,checkupdate,checkadmin)
+        self.checkadmin = admin
+        self.checkupdate = check
+        self.profilewindow = FillProfileScreen(self,self.userID,self.checkupdate,self.checkadmin)
         self.profilewindow.show()
 
     def callAddressScreen(self):
         print(self.userID)
-        self.window = FillAddress(self,self.userID)
+        self.window = FillAddress(self,self.userID,self.checkupdate,self.checkadmin)
         self.window.show()
 
-    def callAdminWindow(self,userID):
+    def callAdminWindow(self,userID,admin=1):
         self.userID = userID
+        self.admin = admin
         self.adminwindow = adminmenu(self,self.userID)
         self.adminwindow.show()
 
-    def callMainWindow(self,userID):
+    def callMainWindow(self,userID,admin=0):
         self.userID = userID
+        self.admin = admin
         self.mainwindow = mainmenu(self,self.userID)
         self.mainwindow.show()
 

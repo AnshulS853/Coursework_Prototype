@@ -10,14 +10,29 @@ import re
 
 from mainmenu import mainmenu
 from adminmenu import adminmenu
+from databasefunction import databaseClass
 
 class FillAddress(QDialog):
-    def __init__(self,app,uid):
+    def __init__(self,app,uid,check,admin):
         super(FillAddress, self).__init__()
         loadUi("address.ui",self)
         self.app = app
         self.userID = uid
+        self.checkupdate = check
+        self.checkadmin = admin
+        self.showbuttons()
         self.addsignup.clicked.connect(self.saveaddress)
+        self.goback.clicked.connect(self.gobackwindow)
+
+    def showbuttons(self):
+        if not self.checkupdate:
+            self.goback.setText("")
+            self.skiptomenu.setText("")
+
+    def gobackwindow(self):
+        if self.checkupdate:
+            self.close()
+            self.app.callProfileScreen(self.userID,self.checkupdate,self.checkadmin)
 
     def validate_postcode(self,pc):
         pattern = 'not matched'
@@ -46,7 +61,8 @@ class FillAddress(QDialog):
         #              "postcode": int(self.postcode.text()),
         #              "county": self.county.text()}
 
-        user_address = (self.addressfield1.text(),
+        user_address = (self.houseno.text(),
+                        self.addressfield1.text(),
                         self.addressfield2.text(),
                         self.postcode.text(),
                         self.county.text())
@@ -55,15 +71,28 @@ class FillAddress(QDialog):
         # connecting to the database
         cur = conn.cursor()
 
+        # cur.execute('SELECT COUNT(postcode) FROM address WHERE postode=?',(user_address[3]))
+        # count = cur.fetchall()
+        # if count[0][0] != 0:
+        #     cur.execute('SELECT COUNT(addressfield1) FROM address WHERE addressfield1=?',(user_address[1]))
+        #     count = cur.fetchall()
+        #     if count[0][0] != 0:
+        #         pass
+
+
+
+        x = databaseClass(self.userID)
+        x.insertaddress(user_address)
+
         cur.execute('SELECT admin FROM users WHERE userID=?', (self.userID,))
         admin = cur.fetchone()
+
         if admin[0] == 1:
             self.close()
-            self.adminwindow = adminmenu(self.userID)
-            self.adminwindow.show()
+            self.app.callAdminWindow(self.userID,admin)
         else:
             self.close()
-            self.mainwindow = mainmenu(self.userID)
-            self.mainwindow.show()
+            self.app.callMainWindow(self.userID,admin)
+
 
 

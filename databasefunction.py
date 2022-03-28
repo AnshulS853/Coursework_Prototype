@@ -19,15 +19,28 @@ class databaseClass:
         self.conn.commit()
         self.conn.close()
 
-
     def insertaddress(self,address):
         self.cur.execute('''
+            INSERT INTO address
+            (houseno,
+            addfield1,
+            addfield2,
+            postcode,
+            county)
+            VALUES (?,?,?,?,?)
+            ''', (address[0],address[1],address[2],address[3],address[4]))
+        self.conn.commit()
+        self.conn.close()
+
+    def updateaddress(self,address):
+        self.cur.execute('''
             UPDATE address
-            SET address1=?,
-            address2=?,
+            SET houseno=?,
+            addfield1=?,
+            addfield2=?,
             postcode=?,
             county=?
             WHERE userID = (?)
-            ''',(address[0],address[1],address[2],address[3],self.userID))
+            ''',(address[0],address[1],address[2],address[3],address[4],self.userID))
         self.conn.commit()
         self.conn.close()

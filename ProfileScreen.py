@@ -9,7 +9,6 @@ import string
 import sqlite3
 import re
 
-from filladdress import FillAddress
 from datetime import date
 from databasefunction import databaseClass
 
@@ -25,8 +24,15 @@ class FillProfileScreen(QDialog):
         self.userID = uid
         self.admin = admin
         self.updatetoast()
+        self.showbuttons()
+        self.skiptoadd.clicked.connect(self.skiptoaddress)
         self.signupcontinue.clicked.connect(self.saveprofile)
         self.goback.clicked.connect(self.gobackwindow)
+
+    def showbuttons(self):
+        if not self.checkupdate:
+            self.goback.setText("")
+            self.skiptoadd.setText("")
 
     def gobackwindow(self):
         if self.checkupdate:
@@ -39,6 +45,10 @@ class FillProfileScreen(QDialog):
         else:
             self.filltoast.setText("You cannot go back until fields are filled!")
 
+    def skiptoaddress(self):
+        if self.checkupdate:
+            self.close()
+            self.app.callAddressScreen()
 
     def updatetoast(self):
         if self.checkupdate:
