@@ -19,7 +19,7 @@ class manageAccounts(QDialog):
         self.setadmin.clicked.connect(self.setuseradmin)
         self.remadmin.clicked.connect(self.removeuseradmin)
         self.goback.clicked.connect(self.gotoadmenu)
-        self.confirmtoast.setText(" ")
+        self.confirmtoast.setText("")
 
     def gotoadmenu(self):
         self.close()
@@ -64,6 +64,10 @@ class manageAccounts(QDialog):
             self.userstable.insertRow(row_number)
             for column_number, data in enumerate(row_data):
                 self.userstable.setItem(row_number, column_number, QTableWidgetItem(str(data)))
+
+        header = self.userstable.horizontalHeader()
+        for i in range(7):
+            header.setSectionResizeMode(i,QtWidgets.QHeaderView.Stretch)
 
     def deleterecord(self):
         conn = sqlite3.connect("auc_database.db")

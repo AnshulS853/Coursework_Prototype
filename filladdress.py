@@ -74,7 +74,7 @@ class FillAddress(QDialog):
                         self.postcode.text(),
                         self.county.text())
 
-        conn = sqlite3.connect("auc_database.db")
+        conn = sqlite3.connect("auc_database.db",isolation_level=None)
         # connecting to the database
         cur = conn.cursor()
 
@@ -92,12 +92,15 @@ class FillAddress(QDialog):
         counthouseno = cur.fetchall()
         if countpostcode[0][0] != 0 and counthouseno[0][0] != 0:
             cur.execute('SELECT addressID FROM address where houseno=? AND postcode=?',(user_address[0],user_address[3]))
-            addressID = cur.fetchall()
-            addressID = addressID[0][0]
-            print(addressID)
+            self.addressID = cur.fetchall()
+            self.addressID = self.addressID[0][0]
+            # print(self.addressID)
         else:
             x = databaseClass(self.userID)
-            x.insertaddress(user_address)
+            self.addressID = x.insertaddress(user_address)
+            # print(self.addressID)
+
+        cur.execute('UPDATE users SET addressID=? WHERE userID=?', (self.addressID, self.userID))
 
         cur.execute('SELECT admin FROM users WHERE userID=?', (self.userID,))
         admin = cur.fetchone()
