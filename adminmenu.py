@@ -45,7 +45,7 @@ class adminmenu(QDialog):
     def updateaccount(self):
         self.close()
         check = True
-        self.app.callProfileScreen(self.userID,self.admin,check)
+        self.app.callProfileScreen(self.userID,check,self.admin)
 
     def purchaseditems(self):
         pass

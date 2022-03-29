@@ -7,8 +7,6 @@ from PyQt5.QtGui import QPixmap
 import sqlite3
 import hashlib
 import os
-import re
-from ProfileScreen import FillProfileScreen
 
 class CreateAccScreen(QDialog):
     def __init__(self,app):

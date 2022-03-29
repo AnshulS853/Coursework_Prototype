@@ -6,9 +6,6 @@ from PyQt5.QtGui import QPixmap
 
 import sqlite3
 import hashlib
-# from mainmenu import mainmenu
-# from adminmenu import adminmenu
-from ProfileScreen import FillProfileScreen
 
 class LoginScreen(QDialog):
     def __init__(self,app):

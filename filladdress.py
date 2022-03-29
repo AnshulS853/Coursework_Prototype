@@ -8,8 +8,6 @@ from PyQt5.QtGui import QPixmap
 import sqlite3
 import re
 
-from mainmenu import mainmenu
-from adminmenu import adminmenu
 from databasefunction import databaseClass
 
 class FillAddress(QDialog):
@@ -23,6 +21,7 @@ class FillAddress(QDialog):
         self.showbuttons()
         self.addsignup.clicked.connect(self.saveaddress)
         self.goback.clicked.connect(self.gobackwindow)
+        self.skiptomenu.clicked.connect(self.goskip)
 
     def showbuttons(self):
         if not self.checkupdate:
@@ -33,6 +32,14 @@ class FillAddress(QDialog):
         if self.checkupdate:
             self.close()
             self.app.callProfileScreen(self.userID,self.checkupdate,self.checkadmin)
+
+    def goskip(self):
+        if self.checkupdate and self.checkadmin:
+            self.close()
+            self.app.callAdminWindow(self.userID,self.checkadmin)
+        elif self.checkupdate:
+            self.close()
+            self.app.callMainWindow(self.userID,self.checkadmin)
 
     def validate_postcode(self,pc):
         pattern = 'not matched'
@@ -79,10 +86,18 @@ class FillAddress(QDialog):
         #     if count[0][0] != 0:
         #         pass
 
-
-
-        x = databaseClass(self.userID)
-        x.insertaddress(user_address)
+        cur.execute('SELECT COUNT(postcode) FROM address WHERE postcode=?',(user_address[3],))
+        countpostcode = cur.fetchall()
+        cur.execute('SELECT COUNT(houseno) FROM address WHERE houseno=?',(user_address[0],))
+        counthouseno = cur.fetchall()
+        if countpostcode[0][0] != 0 and counthouseno[0][0] != 0:
+            cur.execute('SELECT addressID FROM address where houseno=? AND postcode=?',(user_address[0],user_address[3]))
+            addressID = cur.fetchall()
+            addressID = addressID[0][0]
+            print(addressID)
+        else:
+            x = databaseClass(self.userID)
+            x.insertaddress(user_address)
 
         cur.execute('SELECT admin FROM users WHERE userID=?', (self.userID,))
         admin = cur.fetchone()
@@ -91,8 +106,8 @@ class FillAddress(QDialog):
             self.close()
             self.app.callAdminWindow(self.userID,admin)
         else:
-            self.close()
-            self.app.callMainWindow(self.userID,admin)
+             self.close()
+             self.app.callMainWindow(self.userID,admin)
 
 
 

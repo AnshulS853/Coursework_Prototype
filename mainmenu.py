@@ -38,8 +38,7 @@ class mainmenu(QDialog):
 
     def createlisting(self):
         self.close()
-        admin = 1
-        self.app.callCreationWindow(admin)
+        self.app.callCreationWindow()
 
     def purchaseditems(self):
         pass
@@ -53,7 +52,8 @@ class mainmenu(QDialog):
 
     def updateaccount(self):
         self.close()
-        self.app.callProfileScreen(self.userID)
+        check = True
+        self.app.callProfileScreen(self.userID,check)
 
     def myinvoices(self):
         pass

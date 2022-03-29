@@ -6,7 +6,6 @@ from PyQt5.QtGui import QPixmap
 
 import sqlite3
 
-
 class manageAccounts(QDialog):
     def __init__(self,app,uid):
         super(manageAccounts, self).__init__()
