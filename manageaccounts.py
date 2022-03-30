@@ -22,9 +22,6 @@ class manageAccounts(QDialog):
         self.goback.clicked.connect(self.gotoadmenu)
         self.confirmtoast.setText("")
 
-    # def setchecktrue(self):
-    #     self.check = True
-
     def gotoadmenu(self):
         self.close()
         self.app.callAdminWindow(self.userID)
