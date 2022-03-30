@@ -456,7 +456,7 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
      <rect>
       <x>120</x>
       <y>190</y>
-      <width>341</width>
+      <width>371</width>
       <height>51</height>
      </rect>
     </property>
@@ -516,7 +516,7 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
      </property>
     </item>
    </widget>
-   <widget class="QLineEdit" name="duration">
+   <widget class="QLineEdit" name="durationfield">
     <property name="geometry">
      <rect>
       <x>311</x>
@@ -531,7 +531,7 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;
 color:rgb(255, 255, 255);</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="price">
+   <widget class="QLineEdit" name="pricefield">
     <property name="geometry">
      <rect>
       <x>540</x>
@@ -619,9 +619,9 @@ font: 14pt &quot;MS Shell Dlg 2&quot;; color:rgb(255, 255, 255)</string>
   <tabstop>condition</tabstop>
   <tabstop>itemdesc</tabstop>
   <tabstop>format</tabstop>
-  <tabstop>duration</tabstop>
+  <tabstop>durationfield</tabstop>
   <tabstop>durationunits</tabstop>
-  <tabstop>price</tabstop>
+  <tabstop>pricefield</tabstop>
   <tabstop>deliveryoption</tabstop>
   <tabstop>acceptcondition</tabstop>
   <tabstop>continuepage</tabstop>

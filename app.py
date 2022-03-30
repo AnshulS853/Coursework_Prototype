@@ -37,19 +37,19 @@ class appClass():
         self.window = FillAddress(self,self.userID,self.checkupdate,self.checkadmin)
         self.window.show()
 
-    def callAdminWindow(self,userID,admin=1):
+    def callAdminWindow(self,userID,admin=True):
         self.userID = userID
         self.admin = admin
         self.adminwindow = adminmenu(self,self.userID)
         self.adminwindow.show()
 
-    def callMainWindow(self,userID,admin=0):
+    def callMainWindow(self,userID,admin=False):
         self.userID = userID
         self.admin = admin
         self.mainwindow = mainmenu(self,self.userID)
         self.mainwindow.show()
 
-    def callCreationWindow(self,admin=0):
+    def callCreationWindow(self,admin=False):
         self.creationwindow = creationScreen(self,self.userID,admin)
         self.creationwindow.show()
 

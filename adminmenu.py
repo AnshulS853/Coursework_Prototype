@@ -14,7 +14,7 @@ class adminmenu(QDialog):
         self.app = app
         self.userID = uid
         self.now = datetime.now().hour
-        self.admin = 1
+        self.admin = True
         self.welcometoast()
 
         self.gotocreate.clicked.connect(self.createlisting)
