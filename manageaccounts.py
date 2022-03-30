@@ -15,11 +15,15 @@ class manageAccounts(QDialog):
         self.currentUserID = None
         self.adminv = 0
         self.loadTable()
+
         self.deleteacc.clicked.connect(self.deleteuser)
         self.setadmin.clicked.connect(self.setuseradmin)
         self.remadmin.clicked.connect(self.removeuseradmin)
         self.goback.clicked.connect(self.gotoadmenu)
         self.confirmtoast.setText("")
+
+    # def setchecktrue(self):
+    #     self.check = True
 
     def gotoadmenu(self):
         self.close()

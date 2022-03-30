@@ -7,6 +7,7 @@ from ProfileScreen import FillProfileScreen
 from filladdress import FillAddress
 from manageaccounts import manageAccounts
 from creationwindow import creationScreen
+from managelistings import manageListings
 
 class appClass():
     def __init__(self,app):
@@ -56,3 +57,7 @@ class appClass():
     def callManageAccs(self):
         self.manageaccwindow = manageAccounts(self,self.userID)
         self.manageaccwindow.show()
+
+    def callManageListings(self):
+        self.managelistwindow = manageListings(self,self.userID)
+        self.managelistwindow.show()

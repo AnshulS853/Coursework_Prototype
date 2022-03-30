@@ -24,6 +24,7 @@ class adminmenu(QDialog):
         self.gotoupdateacc.clicked.connect(self.updateaccount)
         self.gotoinvoices.clicked.connect(self.myinvoices)
         self.manageaccounts.clicked.connect(self.manageaccs)
+        self.managelistings.clicked.connect(self.managelists)
 
     def welcometoast(self):
         conn = sqlite3.connect("auc_database.db")
@@ -63,6 +64,9 @@ class adminmenu(QDialog):
         self.close()
         self.app.callManageAccs()
 
+    def managelists(self):
+        self.close()
+        self.app.callManageListings()
 
 
 

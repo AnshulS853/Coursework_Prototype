@@ -50,10 +50,13 @@ class databaseClass:
             (title,
             description,
             category,
+            condition,
             format,
             dateofend,
-            delivery)
-            VALUES (?,?,?,?,?,?)
-            ''',(listing[0],listing[1],listing[2],listing[3],listing[4],listing[5]))
+            price,
+            delivery,
+            active)
+            VALUES (?,?,?,?,?,?,?,?,?)
+            ''',(listing[0],listing[1],listing[2],listing[3],listing[4],listing[5],listing[6],listing[7],listing[8]))
         self.conn.close()
 

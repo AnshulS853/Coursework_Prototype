@@ -149,11 +149,13 @@ class creationScreen(QDialog):
                             self.format.currentText(),
                             self.end_date.date(),
                             self.price,
-                            self.deliveryoption.currentText())
+                            self.deliveryoption.currentText(),
+                            1)
 
             print(listing_info)
-            # x = databaseClass(self.userID)
-            # x.insertlisting(listing_info)
+            x = databaseClass(self.userID)
+            x.insertlisting(listing_info)
+            self.close()
 
         # if duration < 0:
         #     self.error.setText("Duration cannot be negative")
