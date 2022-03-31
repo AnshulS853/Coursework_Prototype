@@ -59,7 +59,7 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QPushButton" name="managelistings">
     <property name="geometry">
      <rect>
-      <x>540</x>
+      <x>530</x>
       <y>570</y>
       <width>341</width>
       <height>51</height>

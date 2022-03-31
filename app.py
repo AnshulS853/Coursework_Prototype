@@ -8,11 +8,17 @@ from filladdress import FillAddress
 from manageaccounts import manageAccounts
 from creationwindow import creationScreen
 from managelistings import manageListings
+from viewlistings import viewListings
+from refreshlistings import refreshLists
 
 class appClass():
     def __init__(self,app):
         self.app = app
         self.userID = None
+        self.setlistsinactive()
+
+    def setlistsinactive(self):
+        refreshLists(self)
 
     def callWelcomeScreen(self):
         self.welcomewindow = WelcomeScreen(self)
@@ -61,3 +67,9 @@ class appClass():
     def callManageListings(self):
         self.managelistwindow = manageListings(self,self.userID)
         self.managelistwindow.show()
+
+    def callViewListings(self,userID,admin=False):
+        self.userID = userID
+        self.admin = admin
+        self.viewlistingwindow = viewListings(self,self.userID,self.admin)
+        self.viewlistingwindow.show()

@@ -55,7 +55,8 @@ class adminmenu(QDialog):
         pass
 
     def viewlistings(self):
-        pass
+        self.close()
+        self.app.callViewListings(self.userID,self.admin)
 
     def myinvoices(self):
         pass

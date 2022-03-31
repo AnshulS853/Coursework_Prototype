@@ -403,7 +403,7 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <item>
      <property name="text">
-      <string>Select an option</string>
+      <string>Select an Option</string>
      </property>
     </item>
     <item>
@@ -432,7 +432,7 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <item>
      <property name="text">
-      <string>Select an option</string>
+      <string>Select an Option</string>
      </property>
     </item>
     <item>
@@ -502,17 +502,17 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <item>
      <property name="text">
-      <string>Select an option</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Auction</string>
+      <string>Select an Option</string>
      </property>
     </item>
     <item>
      <property name="text">
       <string>Buy Now</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Auction</string>
      </property>
     </item>
    </widget>

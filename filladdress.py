@@ -105,7 +105,7 @@ class FillAddress(QDialog):
         cur.execute('SELECT admin FROM users WHERE userID=?', (self.userID,))
         admin = cur.fetchone()
 
-        if admin[0] == 1:
+        if admin[0] == True:
             self.close()
             self.app.callAdminWindow(self.userID,admin)
         else:

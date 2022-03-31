@@ -51,11 +51,11 @@ class creationScreen(QDialog):
 
     def calcend_date(self,duration,durationunits):
         if durationunits == "Days":
-            self.end_date = datetime.now() + timedelta(days=duration)
+            self.end_date = datetime.now().date() + timedelta(days=duration)
         elif durationunits == "Months":
-            self.end_date = datetime.now() + timedelta(months=duration)
+            self.end_date = datetime.now().date() + timedelta(months=duration)
         elif durationunits == "Years":
-            self.end_date = datetime.now() + timedelta(years=duration)
+            self.end_date = datetime.now().date() + timedelta(years=duration)
 
     def checkduration(self, duration):
         self.duration = duration
@@ -147,10 +147,10 @@ class creationScreen(QDialog):
                             self.category.currentText(),
                             self.condition.currentText(),
                             self.format.currentText(),
-                            self.end_date.date(),
+                            self.end_date,
                             self.price,
                             self.deliveryoption.currentText(),
-                            1)
+                            True)
 
             print(listing_info)
             x = databaseClass(self.userID)

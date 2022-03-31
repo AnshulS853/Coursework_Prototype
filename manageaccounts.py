@@ -13,7 +13,8 @@ class manageAccounts(QDialog):
         self.app = app
         self.userID = uid
         self.currentUserID = None
-        self.adminv = 0
+        self.mode = None
+        self.adminv = False
         self.loadTable()
 
         self.deleteacc.clicked.connect(self.deleteuser)
@@ -35,20 +36,23 @@ class manageAccounts(QDialog):
             self.confirmtoast.setText("Select a \nRecord")
 
     def deleteuser(self):
+        self.mode = "Delete"
         self.fetchuserID()
         self.confirmtoast.setText("Deleting \n userID: " + str(self.currentUserID))
         self.confirmchoice.clicked.connect(self.deleterecord)
 
     def setuseradmin(self):
+        self.mode = "ChangeAcc"
         self.fetchuserID()
         self.confirmtoast.setText("Updating \n userID: " + str(self.currentUserID) + "\nto Admin")
-        self.adminv = 1
+        self.adminv = True
         self.confirmchoice.clicked.connect(self.updateadmin)
 
     def removeuseradmin(self):
+        self.mode = "ChangeAcc"
         self.fetchuserID()
         self.confirmtoast.setText("Downgrading \n userID: " + str(self.currentUserID) + "\nto User")
-        self.adminv = 0
+        self.adminv = False
         self.confirmchoice.clicked.connect(self.updateadmin)
 
     def loadTable(self):
@@ -71,15 +75,17 @@ class manageAccounts(QDialog):
             header.setSectionResizeMode(i,QtWidgets.QHeaderView.Stretch)
 
     def deleterecord(self):
-        conn = sqlite3.connect("auc_database.db")
-        cur = conn.cursor()
-        cur.execute('DELETE FROM users WHERE userID = ?', (self.currentUserID,))
-        conn.commit()
-        self.loadTable()
+        if self.mode == "Delete":
+            conn = sqlite3.connect("auc_database.db")
+            cur = conn.cursor()
+            cur.execute('DELETE FROM users WHERE userID = ?', (self.currentUserID,))
+            conn.commit()
+            self.loadTable()
 
     def updateadmin(self):
-        conn = sqlite3.connect("auc_database.db")
-        cur = conn.cursor()
-        cur.execute('UPDATE users SET admin=? WHERE userID=?', (self.adminv, self.currentUserID))
-        conn.commit()
-        self.loadTable()
+        if self.mode == "ChangeAcc":
+            conn = sqlite3.connect("auc_database.db")
+            cur = conn.cursor()
+            cur.execute('UPDATE users SET admin=? WHERE userID=?', (self.adminv, self.currentUserID))
+            conn.commit()
+            self.loadTable()

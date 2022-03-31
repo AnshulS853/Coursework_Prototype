@@ -44,11 +44,11 @@ class mainmenu(QDialog):
         pass
 
     def sellerdashboard(self):
-
         pass
 
     def viewlistings(self):
-        pass
+        self.close()
+        self.app.callViewListings(self.userID)
 
     def updateaccount(self):
         self.close()
