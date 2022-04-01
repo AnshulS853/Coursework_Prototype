@@ -10,6 +10,7 @@ from creationwindow import creationScreen
 from managelistings import manageListings
 from viewlistings import viewListings
 from refreshlistings import refreshLists
+from viewlistdetails import viewListDetails
 
 class appClass():
     def __init__(self,app):
@@ -73,3 +74,7 @@ class appClass():
         self.admin = admin
         self.viewlistingwindow = viewListings(self,self.userID,self.admin)
         self.viewlistingwindow.show()
+
+    def callViewListingDetails(self):
+        self.viewlistingdetails = viewListDetails(self,self.userID)
+        self.viewlistingdetails.show()

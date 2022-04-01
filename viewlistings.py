@@ -44,21 +44,22 @@ class viewListings(QDialog):
 
     def fetchlistingID(self):
         try:
-            row = self.vlistingstable.currentRow()
-            self.highlightedname = self.vlistingstable.item(row, 0).text()
-            print(self.highlightedname)
+            self.currentListingID = int(self.query[0][6])
+            # print(self.highlightedname)
             # print(self.currentUserID)
         except:
             self.confirmtoast.setText("Select a \nRecord")
 
     def gotoviewlisting(self):
         self.fetchlistingID()
+        self.close()
+        self.app.callViewListingDetails()
 
     def updatepreferences(self):
         # self.isselected = False
-        self.query = 'SELECT title,price,condition,dateofend,format,delivery FROM listings WHERE active=1'
+        self.query = 'SELECT title,price,condition,dateofend,format,delivery,listingID FROM listings WHERE active=1'
         self.setpreferences()
-        self.number = 0
+        # self.number = 0
         # self.check = True
         self.loadTable()
 
@@ -123,7 +124,7 @@ class viewListings(QDialog):
 
         for row_number, row_data in enumerate(results):
             self.vlistingstable.insertRow(row_number)
-            for column_number, data in enumerate(row_data):
+            for column_number, data in enumerate(row_data[0:len(row_data)-1]):
                 self.vlistingstable.setItem(row_number, column_number, QTableWidgetItem(str(data)))
 
         header = self.vlistingstable.horizontalHeader()
