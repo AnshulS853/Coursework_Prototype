@@ -58,7 +58,7 @@ class FillAddress(QDialog):
             self.addsignup.clicked.connect(self.saveaddress)
         else:
             if pattern.match(pc):
-                pass
+                return
 
     def saveaddress(self):
         self.validate_postcode(str(self.postcode.text()))

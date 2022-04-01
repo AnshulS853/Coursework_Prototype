@@ -74,13 +74,13 @@ class creationScreen(QDialog):
     def checkprice(self,price):
         self.price = price
         try:
-            self.price = int(self.price)
+            self.price = float(self.price)
             locale.setlocale(locale.LC_ALL, 'en_GB')
             self.price = locale.currency(self.price, grouping=True)
             # print(price)
             return True
         except:
-            self.error.setText("Price must be an integer")
+            self.error.setText("Price must in a valid format")
             return
 
     def overperiod(self, format, period):
