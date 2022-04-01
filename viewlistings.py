@@ -43,21 +43,17 @@ class viewListings(QDialog):
             self.app.callMainWindow(self.userID)
 
     def fetchlistingID(self):
-        try:
-            self.currentListingID = int(self.query[0][6])
-            # print(self.highlightedname)
-            # print(self.currentUserID)
-        except:
-            self.confirmtoast.setText("Select a \nRecord")
+        row = self.vlistingstable.currentRow()
+        self.currentListingID = int(self.vlistingstable.item(row, 0).text())
 
     def gotoviewlisting(self):
         self.fetchlistingID()
         self.close()
-        self.app.callViewListingDetails()
+        self.app.callViewListingDetails(self.currentListingID)
 
     def updatepreferences(self):
         # self.isselected = False
-        self.query = 'SELECT title,price,condition,dateofend,format,delivery,listingID FROM listings WHERE active=1'
+        self.query = 'SELECT listingID,title,price,condition,dateofend,format,delivery FROM listings WHERE active=1'
         self.setpreferences()
         # self.number = 0
         # self.check = True
@@ -124,8 +120,11 @@ class viewListings(QDialog):
 
         for row_number, row_data in enumerate(results):
             self.vlistingstable.insertRow(row_number)
-            for column_number, data in enumerate(row_data[0:len(row_data)-1]):
+            # for column_number, data in enumerate(row_data[0:len(row_data)-1]):
+            for column_number, data in enumerate(row_data):
                 self.vlistingstable.setItem(row_number, column_number, QTableWidgetItem(str(data)))
+
+        self.vlistingstable.setColumnHidden(0, True)
 
         header = self.vlistingstable.horizontalHeader()
         for i in range(6):

@@ -99,7 +99,11 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color:rgba(0,0,0,0);
-font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
+font: 12pt &quot;MS Shell Dlg 2&quot;;
+color:rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
    <widget class="QLineEdit" name="passwordfield">
@@ -113,7 +117,8 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color:rgba(0,0,0,0);
-font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
+font: 12pt &quot;MS Shell Dlg 2&quot;;
+color:rgb(255, 255, 255);</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_3">
@@ -200,7 +205,8 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color:rgba(0,0,0,0);
-font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
+font: 12pt &quot;MS Shell Dlg 2&quot;;
+color:rgb(255, 255, 255);</string>
     </property>
    </widget>
    <widget class="QPushButton" name="goback">

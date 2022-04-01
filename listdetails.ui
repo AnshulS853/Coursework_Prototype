@@ -75,14 +75,15 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>120</x>
-      <y>170</y>
-      <width>35</width>
-      <height>19</height>
+      <x>121</x>
+      <y>159</y>
+      <width>47</width>
+      <height>24</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 16pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
+     <string notr="true">font: 20pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255);
+font-weight: bold;</string>
     </property>
     <property name="text">
      <string>Title</string>
@@ -91,14 +92,15 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>560</x>
+      <x>559</x>
       <y>230</y>
-      <width>76</width>
-      <height>19</height>
+      <width>101</width>
+      <height>24</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 16pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
+     <string notr="true">font: 20pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255);
+font-weight: bold;</string>
     </property>
     <property name="text">
      <string>Condition</string>
@@ -108,13 +110,14 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
     <property name="geometry">
      <rect>
       <x>120</x>
-      <y>260</y>
-      <width>89</width>
-      <height>38</height>
+      <y>250</y>
+      <width>119</width>
+      <height>48</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 16pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
+     <string notr="true">font: 20pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255);
+font-weight: bold;</string>
     </property>
     <property name="text">
      <string>Item 
@@ -124,14 +127,15 @@ Description</string>
    <widget class="QLabel" name="label_7">
     <property name="geometry">
      <rect>
-      <x>560</x>
+      <x>561</x>
       <y>280</y>
-      <width>53</width>
-      <height>19</height>
+      <width>71</width>
+      <height>24</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 16pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
+     <string notr="true">font: 20pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255);
+font-weight: bold;</string>
     </property>
     <property name="text">
      <string>Photos</string>
@@ -140,14 +144,15 @@ Description</string>
    <widget class="QLabel" name="label_8">
     <property name="geometry">
      <rect>
-      <x>160</x>
+      <x>150</x>
       <y>570</y>
-      <width>55</width>
-      <height>19</height>
+      <width>73</width>
+      <height>24</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 16pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
+     <string notr="true">font: 20pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255);
+font-weight: bold;</string>
     </property>
     <property name="text">
      <string>Format</string>
@@ -156,14 +161,15 @@ Description</string>
    <widget class="QLabel" name="label_9">
     <property name="geometry">
      <rect>
-      <x>340</x>
+      <x>330</x>
       <y>570</y>
-      <width>68</width>
-      <height>19</height>
+      <width>91</width>
+      <height>24</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 16pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
+     <string notr="true">font: 20pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255);
+font-weight: bold;</string>
     </property>
     <property name="text">
      <string>Duration</string>
@@ -172,14 +178,15 @@ Description</string>
    <widget class="QLabel" name="label_10">
     <property name="geometry">
      <rect>
-      <x>533</x>
+      <x>520</x>
       <y>570</y>
-      <width>81</width>
-      <height>19</height>
+      <width>97</width>
+      <height>24</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 16pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
+     <string notr="true">font: 20pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255);
+font-weight: bold;</string>
     </property>
     <property name="text">
      <string>Price GBP</string>
@@ -189,13 +196,14 @@ Description</string>
     <property name="geometry">
      <rect>
       <x>560</x>
-      <y>160</y>
-      <width>91</width>
-      <height>51</height>
+      <y>166</y>
+      <width>93</width>
+      <height>48</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 16pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
+     <string notr="true">font: 20pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255);
+font-weight: bold;</string>
     </property>
     <property name="text">
      <string>Product
@@ -205,14 +213,15 @@ Category</string>
    <widget class="QLabel" name="label_11">
     <property name="geometry">
      <rect>
-      <x>700</x>
+      <x>697</x>
       <y>570</y>
-      <width>63</width>
-      <height>19</height>
+      <width>85</width>
+      <height>24</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 16pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
+     <string notr="true">font: 20pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255);
+font-weight: bold;</string>
     </property>
     <property name="text">
      <string>Delivery</string>
@@ -265,8 +274,7 @@ font: 14pt &quot;MS Shell Dlg 2&quot;; color:rgb(255, 255, 255)</string>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color:rgba(0,0,0,0);
-font: 12pt &quot;MS Shell Dlg 2&quot;;
-color:rgb(255, 255, 255);</string>
+font: 16pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
     </property>
     <property name="text">
      <string/>
@@ -283,35 +291,37 @@ color:rgb(255, 255, 255);</string>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color:rgba(0,0,0,0);
-font: 12pt &quot;MS Shell Dlg 2&quot;;
-color:rgb(255, 255, 255);</string>
+font: 16pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
     </property>
    </widget>
    <widget class="QLabel" name="conditionfield">
     <property name="geometry">
      <rect>
-      <x>660</x>
+      <x>670</x>
       <y>220</y>
-      <width>181</width>
+      <width>171</width>
       <height>41</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color:rgba(0,0,0,0);
-font: 12pt &quot;MS Shell Dlg 2&quot;;
+font: 16pt &quot;MS Shell Dlg 2&quot;;
 color:rgb(255, 255, 255);</string>
     </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="categoryfield_2">
+   <widget class="QLabel" name="categoryfield">
     <property name="geometry">
      <rect>
-      <x>660</x>
+      <x>670</x>
       <y>170</y>
       <width>181</width>
       <height>41</height>
@@ -319,8 +329,8 @@ color:rgb(255, 255, 255);</string>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color:rgba(0,0,0,0);
-font: 12pt &quot;MS Shell Dlg 2&quot;;
-color:rgb(255, 255, 255);</string>
+font: 16pt &quot;MS Shell Dlg 2&quot;;
+color:rgb(255, 255, 255)</string>
     </property>
     <property name="text">
      <string/>
@@ -329,25 +339,28 @@ color:rgb(255, 255, 255);</string>
    <widget class="QLabel" name="pricefield">
     <property name="geometry">
      <rect>
-      <x>510</x>
+      <x>508</x>
       <y>600</y>
-      <width>121</width>
+      <width>131</width>
       <height>31</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color:rgba(0,0,0,0);
-font: 12pt &quot;MS Shell Dlg 2&quot;;
+font: 16pt &quot;MS Shell Dlg 2&quot;;
 color:rgb(255, 255, 255);</string>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="durationfield">
     <property name="geometry">
      <rect>
-      <x>320</x>
+      <x>319</x>
       <y>600</y>
       <width>121</width>
       <height>31</height>
@@ -355,11 +368,14 @@ color:rgb(255, 255, 255);</string>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color:rgba(0,0,0,0);
-font: 12pt &quot;MS Shell Dlg 2&quot;;
+font: 16pt &quot;MS Shell Dlg 2&quot;;
 color:rgb(255, 255, 255);</string>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="formatfield">
@@ -373,11 +389,14 @@ color:rgb(255, 255, 255);</string>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color:rgba(0,0,0,0);
-font: 12pt &quot;MS Shell Dlg 2&quot;;
+font: 16pt &quot;MS Shell Dlg 2&quot;;
 color:rgb(255, 255, 255);</string>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="deliveryfield">
@@ -385,17 +404,20 @@ color:rgb(255, 255, 255);</string>
      <rect>
       <x>670</x>
       <y>600</y>
-      <width>211</width>
-      <height>71</height>
+      <width>141</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color:rgba(0,0,0,0);
-font: 12pt &quot;MS Shell Dlg 2&quot;;
+font: 16pt &quot;MS Shell Dlg 2&quot;;
 color:rgb(255, 255, 255);</string>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignHCenter|Qt::AlignTop</set>
     </property>
    </widget>
   </widget>

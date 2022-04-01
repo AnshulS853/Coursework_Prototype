@@ -75,6 +75,6 @@ class appClass():
         self.viewlistingwindow = viewListings(self,self.userID,self.admin)
         self.viewlistingwindow.show()
 
-    def callViewListingDetails(self):
-        self.viewlistingdetails = viewListDetails(self,self.userID)
+    def callViewListingDetails(self,listingID):
+        self.viewlistingdetails = viewListDetails(self,listingID,self.userID)
         self.viewlistingdetails.show()
