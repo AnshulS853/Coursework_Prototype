@@ -23,8 +23,13 @@ class FillProfileScreen(QDialog):
         self.checkupdate = cu
         self.userID = uid
         self.admin = admin
+
+        self.firstname = string.capwords(self.firstname.text())
+        self.lastname = string.capwords(self.lastname.text())
+
         self.updatetoast()
         self.showbuttons()
+
         self.skiptoadd.clicked.connect(self.skiptoaddress)
         self.signupcontinue.clicked.connect(self.saveprofile)
         self.goback.clicked.connect(self.gobackwindow)
@@ -68,8 +73,49 @@ class FillProfileScreen(QDialog):
         else:
             return today.year - dateofb.year
 
+    def validateuser(self):
+        if len(self.firstname) > 12 or self.checknumeric(self.firstname) == True:
+            self.firstnameerror.setText("Your firstname must be less than 12 characters and cannot be alphanumeric")
+            return
+
+        if len(self.firstname) == 0:
+            self.firstnameerror.setText("This field cannot be empty")
+            return
+
+        if len(self.lastname) == 0:
+            self.lastnameerror.setText("This field cannot be empty")
+            return
+
+        if len(self.lastname) > 12 or self.checknumeric(self.lastname) == True:
+            self.firstnameerror.setText("Your lastname must be less than 12 characters and cannot be alphanumeric")
+            return
+
+    def validate_email(self,email):
+        if (re.search(regex, email)):
+            pass
+        else:
+            self.emailerror.setText("Invalid email format")
+            return
+
+    def checkemailexists(self,email):
+        conn = sqlite3.connect("auc_database.db")
+        cur = conn.cursor()
+        cur.execute('SELECT COUNT(email) FROM users WHERE email=?', (email,))
+        count = cur.fetchall()
+        conn.close()
+        if count[0][0] != 0:
+            self.emailerror.setText("email already exists")
+            return
+
+    def checkuserage(self,dob):
+        user_age = self.calculate_age(dob)
+        if user_age <= 13:
+            self.doberror.setText("You have to be over 13 to create an account")
+            return
+
     def saveprofile(self):
         gender = str(self.gender.currentText())
+
 
         if gender == "Male":
             gender = 0
@@ -81,57 +127,22 @@ class FillProfileScreen(QDialog):
         #              "email":self.email.text(),
         #              "dob":self.dob.date().toPyDate(),
         #              "gender":gender}
-
-        firstname = string.capwords(self.firstname.text())
-        lastname = string.capwords(self.lastname.text())
-
-        if len(firstname) > 12 or self.checknumeric(firstname) == True:
-            self.firstnameerror.setText("Your firstname must be less than 12 characters and cannot be alphanumeric")
-            self.signupcontinue.clicked.connect(self.saveprofile)
-
-        if not firstname:
-            self.firstnameerror.setText("This field cannot be empty")
-            self.signupcontinue.clicked.connect(self.saveprofile)
-
-        if not lastname:
-            self.lastnameerror.setText("This field cannot be empty")
-            self.signupcontinue.clicked.connect(self.saveprofile)
-
-        if len(lastname) > 12 or self.checknumeric(lastname) == True:
-            self.firstnameerror.setText("Your lastname must be less than 12 characters and cannot be alphanumeric")
-            self.signupcontinue.clicked.connect(self.saveprofile)
+        self.validateuser()
 
         email = self.email.text()
+
+        self.validate_email(email)
 
         # filladdress = FillAddress()
         # widget = QtWidgets.QStackedWidget()
         # widget.addWidget(filladdress)
         # widget.setCurrentIndex(widget.currentIndex() + 1)
 
-        if (re.search(regex, email)):
-            pass
-        else:
-            self.emailerror.setText("Invalid email format")
-            self.signupcontinue.clicked.connect(self.saveprofile)
-
-        conn = sqlite3.connect("auc_database.db")
-        cur = conn.cursor()
-        cur.execute('SELECT COUNT(email) FROM users WHERE email=?', (email,))
-        count = cur.fetchall()
-        conn.close()
-        if count[0][0] != 0:
-            self.emailerror.setText("email already exists")
-            self.signupcontinue.clicked.connect(self.saveprofile)
-
         dob = self.dob.date().toPyDate()
-        user_age = self.calculate_age(dob)
+        self.checkuserage(dob)
 
-        if user_age <= 13:
-            self.doberror.setText("You have to be over 13 to create an account")
-            self.signupcontinue.clicked.connect(self.saveprofile)
-
-        user_info = (firstname,
-                     lastname,
+        user_info = (self.firstname,
+                     self.lastname,
                      email,
                      dob,
                      int(gender))

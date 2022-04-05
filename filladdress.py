@@ -19,6 +19,7 @@ class FillAddress(QDialog):
         self.checkupdate = check
         self.checkadmin = admin
         self.showbuttons()
+
         self.addsignup.clicked.connect(self.saveaddress)
         self.goback.clicked.connect(self.gobackwindow)
         self.skiptomenu.clicked.connect(self.goskip)

@@ -33,14 +33,18 @@ class viewListDetails(QDialog):
         date = datetime.strptime(self.result[6], '%Y-%m-%d').date()
 
         difference = date - now
-        print(difference.days)
+
+        years = difference.days // 365
+        months = (difference.days - years * 365) // 30
+        days = (difference.days - years * 365 - months * 30)
+
+        remainingduration = (str(years)+" Years\n"+str(months)+" Months\n"+str(days)+" Days\n")
+        return remainingduration
 
     def insertdetails(self):
         self.cur.execute('SELECT * FROM listings WHERE listingID = ?',(self.listingID,))
         self.result = self.cur.fetchall()
         self.result = self.result[0]
-
-        # print(result)
 
         self.titlefield.setText(self.result[1])
         self.descfield.setText(self.result[2])
@@ -48,7 +52,10 @@ class viewListDetails(QDialog):
         self.conditionfield.setText(self.result[4])
         self.formatfield.setText(self.result[5])
 
-        self.calculatedatediff()
-        self.durationfield.setText(self.result[6])
+        remainingduration = self.calculatedatediff()
+        self.durationfield.setText(str(remainingduration))
         self.pricefield.setText(self.result[7])
         self.deliveryfield.setText(self.result[8])
+
+
+        self.deliverylocation.setText("Item is located near\n")

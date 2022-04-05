@@ -124,23 +124,6 @@ font-weight: bold;</string>
 Description</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_7">
-    <property name="geometry">
-     <rect>
-      <x>561</x>
-      <y>280</y>
-      <width>71</width>
-      <height>24</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font: 20pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255);
-font-weight: bold;</string>
-    </property>
-    <property name="text">
-     <string>Photos</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_8">
     <property name="geometry">
      <rect>
@@ -162,9 +145,9 @@ font-weight: bold;</string>
     <property name="geometry">
      <rect>
       <x>330</x>
-      <y>570</y>
-      <width>91</width>
-      <height>24</height>
+      <y>550</y>
+      <width>110</width>
+      <height>48</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -172,7 +155,8 @@ font-weight: bold;</string>
 font-weight: bold;</string>
     </property>
     <property name="text">
-     <string>Duration</string>
+     <string>Duration
+Remaining</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_10">
@@ -285,7 +269,7 @@ font: 16pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
      <rect>
       <x>120</x>
       <y>310</y>
-      <width>371</width>
+      <width>661</width>
       <height>231</height>
      </rect>
     </property>
@@ -360,10 +344,10 @@ color:rgb(255, 255, 255);</string>
    <widget class="QLabel" name="durationfield">
     <property name="geometry">
      <rect>
-      <x>319</x>
-      <y>600</y>
+      <x>325</x>
+      <y>606</y>
       <width>121</width>
-      <height>31</height>
+      <height>71</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -381,9 +365,9 @@ color:rgb(255, 255, 255);</string>
    <widget class="QLabel" name="formatfield">
     <property name="geometry">
      <rect>
-      <x>130</x>
+      <x>150</x>
       <y>600</y>
-      <width>121</width>
+      <width>101</width>
       <height>31</height>
      </rect>
     </property>
@@ -396,7 +380,7 @@ color:rgb(255, 255, 255);</string>
      <string/>
     </property>
     <property name="alignment">
-     <set>Qt::AlignCenter</set>
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="deliveryfield">
@@ -406,6 +390,27 @@ color:rgb(255, 255, 255);</string>
       <y>600</y>
       <width>141</width>
       <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:rgba(0,0,0,0);
+font: 16pt &quot;MS Shell Dlg 2&quot;;
+color:rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignHCenter|Qt::AlignTop</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="deliverylocation">
+    <property name="geometry">
+     <rect>
+      <x>670</x>
+      <y>630</y>
+      <width>201</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="styleSheet">
