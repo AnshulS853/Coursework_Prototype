@@ -6,8 +6,9 @@ from PyQt5.QtGui import QPixmap
 
 import sqlite3
 
+
 class viewListings(QDialog):
-    def __init__(self,app,uid,admin):
+    def __init__(self, app, uid, admin):
         super(viewListings, self).__init__()
         loadUi("viewlists.ui", self)
         self.confirmtoast.setText("")
@@ -26,7 +27,7 @@ class viewListings(QDialog):
         self.pdelivery = None
         self.pformat = None
 
-        self.conn = sqlite3.connect("auc_database.db",isolation_level=None)
+        self.conn = sqlite3.connect("auc_database.db", isolation_level=None)
         self.cur = self.conn.cursor()
 
         self.updatepreferences()
@@ -45,6 +46,7 @@ class viewListings(QDialog):
     def fetchlistingID(self):
         row = self.vlistingstable.currentRow()
         self.currentListingID = int(self.vlistingstable.item(row, 0).text())
+        # self.confirmtoast.setText("Please select one Listing")
 
     def gotoviewlisting(self):
         self.fetchlistingID()
@@ -128,4 +130,4 @@ class viewListings(QDialog):
 
         header = self.vlistingstable.horizontalHeader()
         for i in range(6):
-            header.setSectionResizeMode(i,QtWidgets.QHeaderView.Stretch)
+            header.setSectionResizeMode(i, QtWidgets.QHeaderView.Stretch)

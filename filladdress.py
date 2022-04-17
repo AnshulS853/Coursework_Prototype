@@ -56,24 +56,26 @@ class FillAddress(QDialog):
 
         if pattern == 'not matched':
             self.postcodeerror.setText("This is an invalid UK postcode")
-            self.addsignup.clicked.connect(self.saveaddress)
+            return
         else:
             if pattern.match(pc):
-                return
+                return True
 
     def saveaddress(self):
-        self.validate_postcode(str(self.postcode.text()))
 
-        # user_address = {"afieldone": self.addressfield1.text(),
-        #              "afieldtwo": self.addressfield2.text(),
-        #              "postcode": int(self.postcode.text()),
-        #              "county": self.county.text()}
+        if self.validate_postcode(str(self.postcode.text())) is not True:
+            return
 
         user_address = (self.houseno.text(),
                         self.addressfield1.text(),
                         self.addressfield2.text(),
                         self.postcode.text(),
                         self.county.text())
+
+        # user_address = {"afieldone": self.addressfield1.text(),
+        #              "afieldtwo": self.addressfield2.text(),
+        #              "postcode": int(self.postcode.text()),
+        #              "county": self.county.text()}
 
         conn = sqlite3.connect("auc_database.db",isolation_level=None)
         # connecting to the database

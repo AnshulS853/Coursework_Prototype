@@ -22,11 +22,24 @@ class viewListDetails(QDialog):
         self.conn = sqlite3.connect("auc_database.db",isolation_level=None)
         self.cur = self.conn.cursor()
 
+        self.fetchresult()
+        self.setbuttontext()
         self.insertdetails()
 
     def gobacktomenu(self):
         self.close()
         self.app.callViewListings(self.userID,self.admin)
+
+    def fetchresult(self):
+        self.cur.execute('SELECT * FROM listings WHERE listingID = ?',(self.listingID,))
+        self.result = self.cur.fetchall()
+        self.result = self.result[0]
+
+    def setbuttontext(self):
+        if self.result[5] == "Auction":
+            self.continuepage.setText("Place a Bid")
+        else:
+            self.continuepage.setText("Purchase Item")
 
     def calculatedatediff(self):
         now = datetime.now().date()
@@ -42,10 +55,6 @@ class viewListDetails(QDialog):
         return remainingduration
 
     def insertdetails(self):
-        self.cur.execute('SELECT * FROM listings WHERE listingID = ?',(self.listingID,))
-        self.result = self.cur.fetchall()
-        self.result = self.result[0]
-
         self.titlefield.setText(self.result[1])
         self.descfield.setText(self.result[2])
         self.categoryfield.setText(self.result[3])

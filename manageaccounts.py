@@ -23,6 +23,9 @@ class manageAccounts(QDialog):
         self.goback.clicked.connect(self.gotoadmenu)
         self.confirmtoast.setText("")
 
+        self.conn = sqlite3.connect("auc_database.db",isolation_level=None)
+        self.cur = self.cursor()
+
     def gotoadmenu(self):
         self.close()
         self.app.callAdminWindow(self.userID)
@@ -59,10 +62,8 @@ class manageAccounts(QDialog):
         # self.userstable.clear()
         self.userstable.setRowCount(0)
 
-        conn = sqlite3.connect("auc_database.db")
-        cur = conn.cursor()
-        cur.execute('SELECT userID,admin,username,firstname,lastname,dob,gender FROM users LIMIT 50')
-        results = cur.fetchall()
+        self.cur.execute('SELECT userID,admin,username,firstname,lastname,dob,gender FROM users LIMIT 50')
+        results = self.cur.fetchall()
         self.userstable.setRowCount(50)
 
         for row_number, row_data in enumerate(results):
@@ -76,16 +77,10 @@ class manageAccounts(QDialog):
 
     def deleterecord(self):
         if self.mode == "Delete":
-            conn = sqlite3.connect("auc_database.db")
-            cur = conn.cursor()
-            cur.execute('DELETE FROM users WHERE userID = ?', (self.currentUserID,))
-            conn.commit()
+            self.cur.execute('DELETE FROM users WHERE userID = ?', (self.currentUserID,))
             self.loadTable()
 
     def updateadmin(self):
         if self.mode == "ChangeAcc":
-            conn = sqlite3.connect("auc_database.db")
-            cur = conn.cursor()
-            cur.execute('UPDATE users SET admin=? WHERE userID=?', (self.adminv, self.currentUserID))
-            conn.commit()
+            self.cur.execute('UPDATE users SET admin=? WHERE userID=?', (self.adminv, self.currentUserID))
             self.loadTable()

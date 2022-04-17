@@ -323,9 +323,9 @@ color:rgb(255, 255, 255)</string>
    <widget class="QLabel" name="pricefield">
     <property name="geometry">
      <rect>
-      <x>508</x>
+      <x>522</x>
       <y>600</y>
-      <width>131</width>
+      <width>111</width>
       <height>31</height>
      </rect>
     </property>
@@ -338,13 +338,13 @@ color:rgb(255, 255, 255);</string>
      <string/>
     </property>
     <property name="alignment">
-     <set>Qt::AlignCenter</set>
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="durationfield">
     <property name="geometry">
      <rect>
-      <x>325</x>
+      <x>331</x>
       <y>606</y>
       <width>121</width>
       <height>71</height>
@@ -359,7 +359,7 @@ color:rgb(255, 255, 255);</string>
      <string/>
     </property>
     <property name="alignment">
-     <set>Qt::AlignCenter</set>
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
     </property>
    </widget>
    <widget class="QLabel" name="formatfield">
@@ -386,9 +386,9 @@ color:rgb(255, 255, 255);</string>
    <widget class="QLabel" name="deliveryfield">
     <property name="geometry">
      <rect>
-      <x>670</x>
+      <x>700</x>
       <y>600</y>
-      <width>141</width>
+      <width>121</width>
       <height>31</height>
      </rect>
     </property>
@@ -401,15 +401,15 @@ color:rgb(255, 255, 255);</string>
      <string/>
     </property>
     <property name="alignment">
-     <set>Qt::AlignHCenter|Qt::AlignTop</set>
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
     </property>
    </widget>
    <widget class="QLabel" name="deliverylocation">
     <property name="geometry">
      <rect>
-      <x>670</x>
+      <x>700</x>
       <y>630</y>
-      <width>201</width>
+      <width>171</width>
       <height>61</height>
      </rect>
     </property>
@@ -422,7 +422,7 @@ color:rgb(255, 255, 255);</string>
      <string/>
     </property>
     <property name="alignment">
-     <set>Qt::AlignHCenter|Qt::AlignTop</set>
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
     </property>
    </widget>
   </widget>

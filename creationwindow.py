@@ -116,12 +116,14 @@ class creationScreen(QDialog):
                 return True
 
     def characterlimit(self,fieldname,limit):
-        self.error.setText("The "+fieldname+" cannot exceed "+limit+" characters")
+        self.error.setText("The "+fieldname+" cannot exceed "+limit+" characters") 
         return
 
     def createwindow(self):
-        selectoptions = [self.category.currentText(),self.category.currentText(),self.condition.currentText(),self.format.currentText(),self.durationunits.currentText(),self.deliveryoption.currentText()]
+        selectoptions = [self.category.currentText(),self.category.currentText(),self.condition.currentText(),
+                         self.format.currentText(),self.durationunits.currentText(),self.deliveryoption.currentText()]
         selectfields = [self.durationfield.text(),self.title.text(),self.itemdesc.text()]
+
         # self.selectoption(self.category.currentText())
         # self.selectoption(self.condition.currentText())
         # self.selectoption(self.format.currentText())
@@ -150,12 +152,19 @@ class creationScreen(QDialog):
                             self.end_date,
                             self.price,
                             self.deliveryoption.currentText(),
-                            True)
+                            True,
+                            self.userID)
+            #in order of title,description,category,condition,format,end date,price,delivery,Listing Active,sellerID
 
             print(listing_info)
             x = databaseClass(self.userID)
             x.insertlisting(listing_info)
-            self.close()
+            if self.admin:
+                self.close()
+                self.app.callAdminWindow(self.userID)
+            else:
+                self.close()
+                self.app.callMainWindow(self.userID)
 
         # if duration < 0:
         #     self.error.setText("Duration cannot be negative")
