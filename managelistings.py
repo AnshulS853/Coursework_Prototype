@@ -23,6 +23,9 @@ class manageListings(QDialog):
         self.setinactive.clicked.connect(self.makelistinginactive)
         self.goback.clicked.connect(self.gotoadmenu)
 
+        self.conn = sqlite3.connect("auc_database.db",isolation_level=None)
+        self.cur = self.cursor()
+
     def gotoadmenu(self):
         self.close()
         self.app.callAdminWindow(self.userID)
@@ -58,10 +61,8 @@ class manageListings(QDialog):
     def loadTable(self):
         self.listingstable.setRowCount(0)
 
-        conn = sqlite3.connect("auc_database.db")
-        cur = conn.cursor()
-        cur.execute('SELECT listingID,title,category,format,dateofend,price,active FROM listings LIMIT 50')
-        results = cur.fetchall()
+        self.cur.execute('SELECT listingID,title,category,format,dateofend,price,active FROM listings LIMIT 50')
+        results = self.cur.fetchall()
         self.listingstable.setRowCount(50)
 
         for row_number, row_data in enumerate(results):
@@ -75,16 +76,10 @@ class manageListings(QDialog):
 
     def deleterecord(self):
         if self.mode == "Delete":
-            conn = sqlite3.connect("auc_database.db")
-            cur = conn.cursor()
-            cur.execute('DELETE FROM listings WHERE listingID = ?', (self.currentListingID,))
-            conn.commit()
+            self.cur.execute('DELETE FROM listings WHERE listingID = ?', (self.currentListingID,))
             self.loadTable()
 
     def updatelisting(self):
         if self.mode == "ChangeList":
-            conn = sqlite3.connect("auc_database.db")
-            cur = conn.cursor()
-            cur.execute('UPDATE listings SET active=? WHERE listingID=?', (self.activev, self.currentListingID))
-            conn.commit()
+            self.cur.execute('UPDATE listings SET active=? WHERE listingID=?', (self.activev, self.currentListingID))
             self.loadTable()

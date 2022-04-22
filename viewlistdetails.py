@@ -38,8 +38,11 @@ class viewListDetails(QDialog):
     def setbuttontext(self):
         if self.result[5] == "Auction":
             self.continuepage.setText("Place a Bid")
+            self.pricefield.setText("Staring Price:\n"+str(self.result[7]))
         else:
             self.continuepage.setText("Purchase Item")
+            self.pricefield.setText(self.result[7])
+
 
     def calculatedatediff(self):
         now = datetime.now().date()
@@ -54,6 +57,15 @@ class viewListDetails(QDialog):
         remainingduration = (str(years)+" Years\n"+str(months)+" Months\n"+str(days)+" Days\n")
         return remainingduration
 
+    def fetchdeliverylocation(self):
+        self.cur.execute('SELECT addressID from usad WHERE userID = ?',(self.result[10],))
+        addressID = self.cur.fetchall()
+        addressID = addressID[0][0]
+        self.cur.execute('SELECT postcode from address WHERE addressID = ?',(addressID,))
+        postcode = self.cur.fetchall()
+        postcode = postcode[0][0]
+        return postcode
+
     def insertdetails(self):
         self.titlefield.setText(self.result[1])
         self.descfield.setText(self.result[2])
@@ -63,8 +75,7 @@ class viewListDetails(QDialog):
 
         remainingduration = self.calculatedatediff()
         self.durationfield.setText(str(remainingduration))
-        self.pricefield.setText(self.result[7])
         self.deliveryfield.setText(self.result[8])
 
-
-        self.deliverylocation.setText("Item is located near\n")
+        postcode = self.fetchdeliverylocation()
+        self.deliverylocation.setText("Item is located near\n" + str(postcode))

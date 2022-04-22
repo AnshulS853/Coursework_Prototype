@@ -103,7 +103,8 @@ class FillAddress(QDialog):
             self.addressID = x.insertaddress(user_address)
             # print(self.addressID)
 
-        cur.execute('UPDATE users SET addressID=? WHERE userID=?', (self.addressID, self.userID))
+        # cur.execute('UPDATE users SET addressID=? WHERE userID=?', (self.addressID, self.userID))\
+        cur.execute('INSERT INTO usad VALUES (?,?)',(self.userID,self.addressID))
 
         cur.execute('SELECT admin FROM users WHERE userID=?', (self.userID,))
         admin = cur.fetchone()

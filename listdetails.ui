@@ -326,7 +326,7 @@ color:rgb(255, 255, 255)</string>
       <x>522</x>
       <y>600</y>
       <width>111</width>
-      <height>31</height>
+      <height>71</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -338,7 +338,7 @@ color:rgb(255, 255, 255);</string>
      <string/>
     </property>
     <property name="alignment">
-     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
     </property>
    </widget>
    <widget class="QLabel" name="durationfield">
