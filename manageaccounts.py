@@ -15,7 +15,9 @@ class manageAccounts(QDialog):
         self.currentUserID = None
         self.mode = None
         self.adminv = False
-        self.loadTable()
+
+        self.conn = sqlite3.connect("auc_database.db",isolation_level=None)
+        self.cur = self.conn.cursor()
 
         self.deleteacc.clicked.connect(self.deleteuser)
         self.setadmin.clicked.connect(self.setuseradmin)
@@ -23,8 +25,7 @@ class manageAccounts(QDialog):
         self.goback.clicked.connect(self.gotoadmenu)
         self.confirmtoast.setText("")
 
-        self.conn = sqlite3.connect("auc_database.db",isolation_level=None)
-        self.cur = self.cursor()
+        self.loadTable()
 
     def gotoadmenu(self):
         self.close()

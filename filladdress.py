@@ -62,7 +62,6 @@ class FillAddress(QDialog):
                 return True
 
     def saveaddress(self):
-
         if self.validate_postcode(str(self.postcode.text())) is not True:
             return
 

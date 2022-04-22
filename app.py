@@ -11,6 +11,7 @@ from managelistings import manageListings
 from viewlistings import viewListings
 from refreshlistings import refreshLists
 from viewlistdetails import viewListDetails
+from auctionBids import auctionBids
 
 class appClass():
     def __init__(self,app):
@@ -78,3 +79,7 @@ class appClass():
     def callViewListingDetails(self,listingID):
         self.viewlistingdetails = viewListDetails(self,listingID,self.userID,self.admin)
         self.viewlistingdetails.show()
+
+    def callAuctionBids(self,buyerID,listingID,admin,postcode):
+        self.auctionbidswindow = auctionBids(self,buyerID,listingID,admin,postcode)
+        self.auctionbidswindow.show()

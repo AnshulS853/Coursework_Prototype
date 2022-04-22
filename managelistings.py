@@ -17,14 +17,14 @@ class manageListings(QDialog):
         self.mode = None
         self.activev = None
 
-        self.loadTable()
+        self.conn = sqlite3.connect("auc_database.db",isolation_level=None)
+        self.cur = self.conn.cursor()
+
         self.deletelist.clicked.connect(self.deletelisting)
         self.setactive.clicked.connect(self.makelistingactive)
         self.setinactive.clicked.connect(self.makelistinginactive)
         self.goback.clicked.connect(self.gotoadmenu)
-
-        self.conn = sqlite3.connect("auc_database.db",isolation_level=None)
-        self.cur = self.cursor()
+        self.loadTable()
 
     def gotoadmenu(self):
         self.close()

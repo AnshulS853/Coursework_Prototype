@@ -18,6 +18,9 @@ class viewListDetails(QDialog):
         self.userID = uid
         self.listingID = lid
         self.goback.clicked.connect(self.gobacktomenu)
+        self.continuepage.clicked.connect(self.purchase)
+
+        self.postcode = None
 
         self.conn = sqlite3.connect("auc_database.db",isolation_level=None)
         self.cur = self.conn.cursor()
@@ -77,5 +80,12 @@ class viewListDetails(QDialog):
         self.durationfield.setText(str(remainingduration))
         self.deliveryfield.setText(self.result[8])
 
-        postcode = self.fetchdeliverylocation()
-        self.deliverylocation.setText("Item is located near\n" + str(postcode))
+        self.postcode = self.fetchdeliverylocation()
+        self.deliverylocation.setText("Item is located near\n" + str(self.postcode))
+
+    def purchase(self):
+        if self.result[5] == "Auction":
+            self.close()
+            self.app.callAuctionBids(self.userID,self.listingID,self.admin,self.postcode)
+        else:
+            self.close()
