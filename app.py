@@ -76,10 +76,10 @@ class appClass():
         self.viewlistingwindow = viewListings(self,self.userID,self.admin)
         self.viewlistingwindow.show()
 
-    def callViewListingDetails(self,listingID):
-        self.viewlistingdetails = viewListDetails(self,listingID,self.userID,self.admin)
+    def callViewListingDetails(self,listingID,admin):
+        self.viewlistingdetails = viewListDetails(self,listingID,self.userID,admin)
         self.viewlistingdetails.show()
 
-    def callAuctionBids(self,buyerID,listingID,admin,postcode):
+    def callAuctionBids(self, buyerID, listingID, admin, postcode):
         self.auctionbidswindow = auctionBids(self,buyerID,listingID,admin,postcode)
         self.auctionbidswindow.show()

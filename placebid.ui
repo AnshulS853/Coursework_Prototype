@@ -69,7 +69,7 @@ background-color: rgb(230, 230, 250);
 font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
-     <string>Confirm</string>
+     <string>Place Your Bid</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_4">
@@ -162,9 +162,9 @@ font-weight: bold;</string>
    <widget class="QLabel" name="highestbidfield">
     <property name="geometry">
      <rect>
-      <x>480</x>
+      <x>510</x>
       <y>190</y>
-      <width>371</width>
+      <width>341</width>
       <height>51</height>
      </rect>
     </property>
@@ -220,7 +220,7 @@ of &lt;price&gt;</string>
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLineEdit" name="title">
+   <widget class="QLineEdit" name="biddingfield">
     <property name="geometry">
      <rect>
       <x>386</x>
@@ -350,6 +350,26 @@ color:rgb(255, 255, 255);</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="bidtimefield">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>240</y>
+      <width>341</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:rgba(0,0,0,0);
+font: 16pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
     </property>
    </widget>
   </widget>

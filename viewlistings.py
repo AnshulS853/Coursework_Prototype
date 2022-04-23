@@ -51,7 +51,7 @@ class viewListings(QDialog):
     def gotoviewlisting(self):
         self.fetchlistingID()
         self.close()
-        self.app.callViewListingDetails(self.currentListingID)
+        self.app.callViewListingDetails(self.currentListingID,self.admin)
 
     def updatepreferences(self):
         # self.isselected = False

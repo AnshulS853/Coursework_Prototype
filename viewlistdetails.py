@@ -9,7 +9,7 @@ import datetime
 from datetime import datetime,date
 
 class viewListDetails(QDialog):
-    def __init__(self, app,lid, uid, admin):
+    def __init__(self, app, lid, uid, admin):
         super(viewListDetails, self).__init__()
         loadUi("listdetails.ui", self)
         # connecting buttons to functions when clicked
@@ -17,7 +17,7 @@ class viewListDetails(QDialog):
         self.admin = admin
         self.userID = uid
         self.listingID = lid
-        self.goback.clicked.connect(self.gobacktomenu)
+        self.goback.clicked.connect(self.gobackpage)
         self.continuepage.clicked.connect(self.purchase)
 
         self.postcode = None
@@ -29,7 +29,7 @@ class viewListDetails(QDialog):
         self.setbuttontext()
         self.insertdetails()
 
-    def gobacktomenu(self):
+    def gobackpage(self):
         self.close()
         self.app.callViewListings(self.userID,self.admin)
 
@@ -41,7 +41,7 @@ class viewListDetails(QDialog):
     def setbuttontext(self):
         if self.result[5] == "Auction":
             self.continuepage.setText("Place a Bid")
-            self.pricefield.setText("Staring Price:\n"+str(self.result[7]))
+            self.pricefield.setText("Starting Price:\n"+str(self.result[7]))
         else:
             self.continuepage.setText("Purchase Item")
             self.pricefield.setText(self.result[7])
