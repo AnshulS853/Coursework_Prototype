@@ -162,10 +162,10 @@ font-weight: bold;</string>
    <widget class="QLabel" name="highestbidfield">
     <property name="geometry">
      <rect>
-      <x>510</x>
+      <x>690</x>
       <y>190</y>
-      <width>341</width>
-      <height>51</height>
+      <width>161</width>
+      <height>81</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -355,10 +355,10 @@ color:rgb(255, 255, 255);</string>
    <widget class="QLabel" name="bidtimefield">
     <property name="geometry">
      <rect>
-      <x>510</x>
-      <y>240</y>
-      <width>341</width>
-      <height>51</height>
+      <x>480</x>
+      <y>190</y>
+      <width>201</width>
+      <height>81</height>
      </rect>
     </property>
     <property name="styleSheet">

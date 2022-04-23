@@ -61,3 +61,24 @@ class databaseClass:
             ''',(listing[0],listing[1],listing[2],listing[3],listing[4],listing[5],listing[6],listing[7],listing[8],listing[9]))
         self.conn.close()
 
+    def insertbid(self,bid):
+        self.cur.execute('''
+            INSERT INTO auctions
+            (listingID,
+            highestBid,
+            bidDate,
+            bidderID)
+            VALUES (?,?,?,?)
+            ''',(bid[0],bid[1],bid[2],self.userID))
+        self.conn.close()
+
+    def updatebid(self,bid):
+        self.cur.execute('''
+            UPDATE auctions
+            SET highestBid = ?,
+            bidDate = ?,
+            bidderID = ?
+            WHERE listingID = ?
+            ''',(bid[1],bid[2],self.userID,bid[0]))
+        self.conn.close()
+

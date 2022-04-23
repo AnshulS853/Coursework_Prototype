@@ -4,11 +4,12 @@ from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QDialog, QApplication, QWidget
 from PyQt5.QtGui import QPixmap
 
-from datetime import datetime, timedelta
+from datetime import datetime
 
 from databasefunction import databaseClass
 import sqlite3
 import locale
+import time
 
 class auctionBids(QDialog):
     def __init__(self, app, bID, lID, admin, postcode):
@@ -24,6 +25,7 @@ class auctionBids(QDialog):
         self.result = None
         self.buyerBid = None
         self.bidDetails = None
+        self.new = False
 
         self.goback.clicked.connect(self.gobackpage)
         self.continuepage.clicked.connect(self.confirmbid)
@@ -55,7 +57,11 @@ class auctionBids(QDialog):
         return amount
 
     def validatebid(self):
-        buyerBid = float(self.biddingfield.text())
+        try:
+            buyerBid = float(self.biddingfield.text())
+        except:
+            self.confirmtoast.setText("Enter a valid Bid")
+            return
         self.buyerBid = self.checkprice(buyerBid)
         if self.bidDetails is None:
             bidPrice = float(self.pricetoint(self.result[7]))
@@ -68,11 +74,21 @@ class auctionBids(QDialog):
             self.confirmtoast.setText("Invalid Bid.\nMust be greater\nthan highest bid")
             return
 
+    def acceptconditions(self):
+        if self.acceptcondition.isChecked():
+            return True
+        else:
+            self.confirmtoast.setText("You must accept\nto the terms")
+            return
+
     def confirmbid(self):
-        if self.validatebid() is True:
-            self.continuepage.setText("Confirm")
-            self.confirmtoast.setText("Confirm your bid\nplacement of\n"+str(self.buyerBid))
-            self.continuepage.clicked.connect(self.saveBid)
+        if self.acceptconditions() is True:
+            if self.validatebid() is True:
+                self.continuepage.setText("Confirm")
+                self.confirmtoast.setText("Confirm your bid\nplacement of\n"+str(self.buyerBid))
+                self.continuepage.clicked.connect(self.saveBid)
+        else:
+            self.confirmtoast.setText("You must accept\nto the terms")
 
     def calculatedatediff(self):
         now = datetime.now().date()
@@ -111,7 +127,8 @@ class auctionBids(QDialog):
 
         self.cur.execute('SELECT highestBid, bidDate FROM auctions WHERE listingID = ?', (self.listingID,))
         bidDetails = self.cur.fetchall()
-        if bidDetails is None:
+        if not bidDetails:
+            self.new = True
             self.highestbidfield.setText(str(self.result[7]))
         else:
             self.bidDetails = bidDetails[0]
@@ -119,5 +136,26 @@ class auctionBids(QDialog):
             self.bidtimefield.setText(str(self.bidDetails[1]))
 
     def saveBid(self):
+        self.confirmtoast.setText("Bid Placed \nSuccessfully")
+        today = datetime.now().date()
+        xtime = datetime.today().strftime("%H:%M %p")
+        bidTime = (str(today)+"\n"+str(xtime))
 
-        print("Bid saved successfully")
+        bid = (self.listingID, self.buyerBid, bidTime)
+
+        if self.new is True:
+            x = databaseClass(self.buyerID)
+            x.insertbid(bid)
+        else:
+            x = databaseClass(self.buyerID)
+            x.updatebid(bid)
+        time.sleep(8)
+        #Created illusion to the user that their bid has been saved successfully
+        #stops the user doubting
+
+        if self.admin is True:
+            self.close()
+            self.app.callAdminWindow(self.buyerID)
+        else:
+            self.close()
+            self.app.callMainWindow(self.buyerID)
