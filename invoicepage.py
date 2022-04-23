@@ -5,6 +5,7 @@ from PyQt5.QtWidgets import QDialog, QApplication, QWidget
 from PyQt5.QtGui import QPixmap
 
 import sqlite3
+import locale
 import datetime
 from datetime import datetime,date
 
@@ -31,7 +32,12 @@ class createInvoice(QDialog):
         self.setfields()
 
     def gobackpage(self):
-        pass
+        if self.admin:
+            self.close()
+            self.app.callAdminWindow(self.userID)
+        else:
+            self.close()
+            self.app.callMainWindow(self.userID)
 
     def fetchresult(self):
         self.cur.execute('SELECT * FROM listings WHERE listingID = ?',(self.listingID,))
@@ -44,8 +50,20 @@ class createInvoice(QDialog):
         self.invoicedetails = self.invoicedetails[0]
 
         self.buyerID = self.invoicedetails[0]
-
         self.fetchdeliveredto()
+
+    def pricetoint(self,raw_price):
+        locale.setlocale(locale.LC_ALL, 'en_GB')
+        conv = locale.localeconv()
+        raw_numbers = raw_price.strip(conv['currency_symbol'])
+        amount = locale.atof(raw_numbers)
+        return amount
+
+    def checkprice(self, price):
+        price = float(price)
+        locale.setlocale(locale.LC_ALL, 'en_GB')
+        price = locale.currency(price, grouping=True)
+        return price
 
     def fetchdeliveredto(self):
         self.cur.execute('SELECT addressID from usad WHERE userID = ?',(self.buyerID,))
@@ -105,10 +123,10 @@ class createInvoice(QDialog):
         self.agreedpricefield.setText(str(self.invoicedetails[2]))
 
         #Price Subtotal
-        self.listedpricefield.setText('')
-        self.finalpricefield.setText('')
-        self.businesscomfield.setText('')
-        self.amountduefield.setText('')
+        self.listedpricefield.setText(str(self.result[7]))
+        self.finalpricefield.setText(str(self.invoicedetails[2]))
+        self.businesscomfield.setText(str(self.checkprice(int(self.pricetoint(self.invoicedetails[2]))*0.15)))
+        self.amountduefield.setText(str(self.invoicedetails[2]))
 
 
 
