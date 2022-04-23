@@ -13,6 +13,7 @@ from refreshlistings import refreshLists
 from viewlistdetails import viewListDetails
 from auctionBids import auctionBids
 from invoicepage import createInvoice
+from findinv import findInvoices
 
 class appClass():
     def __init__(self,app):
@@ -77,7 +78,7 @@ class appClass():
         self.viewlistingwindow = viewListings(self,self.userID,self.admin)
         self.viewlistingwindow.show()
 
-    def callViewListingDetails(self, listingID,admin):
+    def callViewListingDetails(self, listingID,admin=False):
         self.viewlistingdetails = viewListDetails(self,listingID,self.userID,admin)
         self.viewlistingdetails.show()
 
@@ -88,3 +89,7 @@ class appClass():
     def callCreateInvoice(self,listingID,userID,invoiceID,admin):
         self.invoicewindow = createInvoice(self,listingID,userID,invoiceID,admin)
         self.invoicewindow.show()
+
+    def callFindInvoices(self,userID,admin=False):
+        self.findinvwindow = findInvoices(self,userID,admin)
+        self.findinvwindow.show()

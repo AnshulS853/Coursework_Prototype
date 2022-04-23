@@ -6,19 +6,19 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>950</width>
+    <width>550</width>
     <height>800</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>950</width>
+    <width>550</width>
     <height>800</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>950</width>
+    <width>550</width>
     <height>800</height>
    </size>
   </property>
@@ -42,7 +42,7 @@ background-color:qlineargradient(spread:pad, x1:0.091, y1:0.101636, x2:0.991379,
     <property name="geometry">
      <rect>
       <x>110</x>
-      <y>570</y>
+      <y>600</y>
       <width>341</width>
       <height>51</height>
      </rect>
@@ -59,8 +59,8 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QPushButton" name="managelistings">
     <property name="geometry">
      <rect>
-      <x>530</x>
-      <y>570</y>
+      <x>110</x>
+      <y>669</y>
       <width>341</width>
       <height>51</height>
      </rect>
@@ -77,8 +77,8 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>420</x>
-      <y>520</y>
+      <x>200</x>
+      <y>556</y>
       <width>161</width>
       <height>41</height>
      </rect>
@@ -93,9 +93,9 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>120</x>
-      <y>90</y>
-      <width>631</width>
+      <x>80</x>
+      <y>70</y>
+      <width>391</width>
       <height>71</height>
      </rect>
     </property>
@@ -109,9 +109,9 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QLabel" name="greetuser">
     <property name="geometry">
      <rect>
-      <x>130</x>
-      <y>160</y>
-      <width>491</width>
+      <x>90</x>
+      <y>180</y>
+      <width>361</width>
       <height>41</height>
      </rect>
     </property>
@@ -121,23 +121,8 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
     <property name="text">
      <string>Good &lt;Morning/Evening&gt; &lt;firstname&gt;</string>
     </property>
-   </widget>
-   <widget class="QPushButton" name="gotopurchased">
-    <property name="geometry">
-     <rect>
-      <x>110</x>
-      <y>370</y>
-      <width>341</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">border-radius:20px;
-background-color: rgb(230, 230, 250);
-font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
-    </property>
-    <property name="text">
-     <string>Purchased Items</string>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QPushButton" name="gotocreate">
@@ -161,8 +146,8 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QPushButton" name="gotoupdateacc">
     <property name="geometry">
      <rect>
-      <x>530</x>
-      <y>370</y>
+      <x>110</x>
+      <y>422</y>
       <width>341</width>
       <height>51</height>
      </rect>
@@ -179,8 +164,8 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>390</x>
-      <y>220</y>
+      <x>160</x>
+      <y>200</y>
       <width>221</width>
       <height>41</height>
      </rect>
@@ -192,29 +177,11 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
      <string>Select an option to proceed</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="gotodashboard">
-    <property name="geometry">
-     <rect>
-      <x>110</x>
-      <y>460</y>
-      <width>341</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">border-radius:20px;
-background-color: rgb(230, 230, 250);
-font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
-    </property>
-    <property name="text">
-     <string>Seller Dashboard</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="gotoview">
     <property name="geometry">
      <rect>
-      <x>530</x>
-      <y>280</y>
+      <x>110</x>
+      <y>350</y>
       <width>341</width>
       <height>51</height>
      </rect>
@@ -231,8 +198,8 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QPushButton" name="gotoinvoices">
     <property name="geometry">
      <rect>
-      <x>530</x>
-      <y>460</y>
+      <x>110</x>
+      <y>495</y>
       <width>341</width>
       <height>51</height>
      </rect>

@@ -50,7 +50,10 @@ class createInvoice(QDialog):
         self.invoicedetails = self.invoicedetails[0]
 
         self.buyerID = self.invoicedetails[0]
+        print(self.buyerID)
+
         self.fetchdeliveredto()
+        self.fetchdeliveredfrom()
 
     def pricetoint(self,raw_price):
         locale.setlocale(locale.LC_ALL, 'en_GB')
@@ -101,7 +104,6 @@ class createInvoice(QDialog):
 
 
     def setfields(self):
-        self.fetchdeliveredfrom()
         self.fetchinvoicedetails()
 
         #Product Details

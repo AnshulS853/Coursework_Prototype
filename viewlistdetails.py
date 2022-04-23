@@ -102,18 +102,11 @@ class viewListDetails(QDialog):
                         ''', (self.listingID, self.userID, self.result[7]))
         invoiceID = self.cur.lastrowid
 
-        # self.cur.execute('''
-        #                 UPDATE listings
-        #                 SET active=0
-        #                 WHERE listingID = (?)
-        #                 ''', (self.listingID,))
-
-        # if self.admin is True:
-        #     self.close()
-        #     self.app.callAdminWindow(self.userID)
-        # else:
-        #     self.close()
-        #     self.app.callMainWindow(self.userID)
+        self.cur.execute('''
+                        UPDATE listings
+                        SET active=0
+                        WHERE listingID = (?)
+                        ''', (self.listingID,))
 
         self.close()
         self.app.callCreateInvoice(self.listingID,self.userID,invoiceID,self.admin)

@@ -6,7 +6,6 @@ from PyQt5.QtGui import QPixmap
 
 import sqlite3
 
-
 class viewListings(QDialog):
     def __init__(self, app, uid, admin):
         super(viewListings, self).__init__()

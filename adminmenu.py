@@ -18,8 +18,6 @@ class adminmenu(QDialog):
         self.welcometoast()
 
         self.gotocreate.clicked.connect(self.createlisting)
-        self.gotopurchased.clicked.connect(self.purchaseditems)
-        self.gotodashboard.clicked.connect(self.sellerdashboard)
         self.gotoview.clicked.connect(self.viewlistings)
         self.gotoupdateacc.clicked.connect(self.updateaccount)
         self.gotoinvoices.clicked.connect(self.myinvoices)
@@ -33,11 +31,11 @@ class adminmenu(QDialog):
         firstname = cur.fetchall()
 
         if 5 <= self.now <= 11:
-            self.greetuser.setText("Good Morning "+str((firstname)[0][0])+"!")
+            self.greetuser.setText("Good Morning "+str((firstname)[0][0])+" :)")
         elif 12 <= self.now <= 17:
-            self.greetuser.setText("Good Afternoon "+str((firstname)[0][0])+"!")
+            self.greetuser.setText("Good Afternoon "+str((firstname)[0][0])+" :)")
         else:
-            self.greetuser.setText("Good Evening "+str((firstname)[0][0])+"!")
+            self.greetuser.setText("Good Evening "+str((firstname)[0][0])+" :)")
 
     def createlisting(self):
         self.close()
@@ -48,18 +46,13 @@ class adminmenu(QDialog):
         check = True
         self.app.callProfileScreen(self.userID,check,self.admin)
 
-    def purchaseditems(self):
-        pass
-
-    def sellerdashboard(self):
-        pass
-
     def viewlistings(self):
         self.close()
         self.app.callViewListings(self.userID,self.admin)
 
     def myinvoices(self):
-        pass
+        self.close()
+        self.app.callFindInvoices(self.userID,self.admin)
 
     def manageaccs(self):
         self.close()
