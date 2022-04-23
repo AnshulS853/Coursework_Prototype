@@ -18,7 +18,7 @@ class viewListDetails(QDialog):
         self.userID = uid
         self.listingID = lid
         self.goback.clicked.connect(self.gobackpage)
-        self.continuepage.clicked.connect(self.purchase)
+        self.continuepage.clicked.connect(self.confirmpurchase)
 
         self.postcode = None
 
@@ -83,9 +83,37 @@ class viewListDetails(QDialog):
         self.postcode = self.fetchdeliverylocation()
         self.deliverylocation.setText("Item is located near\n" + str(self.postcode))
 
-    def purchase(self):
+    def confirmpurchase(self):
         if self.result[5] == "Auction":
             self.close()
             self.app.callAuctionBids(self.userID,self.listingID,self.admin,self.postcode)
         else:
-            self.close()
+            self.continuepage.setText("Confirm Purchase")
+            self.continuepage.clicked.connect(self.purchase)
+
+    def purchase(self):
+        self.cur.execute('''
+                        INSERT INTO invoice
+                        (listingID,
+                        buyerID,
+                        total,
+                        purchasedate)
+                        VALUES (?,?,?,DATE('now'))
+                        ''', (self.listingID, self.userID, self.result[7]))
+        invoiceID = self.cur.lastrowid
+
+        # self.cur.execute('''
+        #                 UPDATE listings
+        #                 SET active=0
+        #                 WHERE listingID = (?)
+        #                 ''', (self.listingID,))
+
+        # if self.admin is True:
+        #     self.close()
+        #     self.app.callAdminWindow(self.userID)
+        # else:
+        #     self.close()
+        #     self.app.callMainWindow(self.userID)
+
+        self.close()
+        self.app.callCreateInvoice(self.listingID,self.userID,invoiceID,self.admin)

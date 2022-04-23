@@ -40,7 +40,7 @@ class refreshLists:
                             WHERE listingID = (?)
                             ''',(currentlistingID,))
 
-    def updateauctions(self,list):
+    def updateauctions(self, list):
         for i in list:
             currentlistingID = i
             self.cur.execute('''SELECT bidderID,highestBid FROM auctions WHERE listingID = ?''',(currentlistingID,))
