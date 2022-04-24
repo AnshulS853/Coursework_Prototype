@@ -20,9 +20,6 @@ class FillProfileScreen(QDialog):
         self.userID = uid
         self.admin = admin
 
-        self.firstname = string.capwords(self.firstname.text())
-        self.lastname = string.capwords(self.lastname.text())
-
         self.updatetoast()
         self.showbuttons()
 
@@ -110,6 +107,9 @@ class FillProfileScreen(QDialog):
             return
 
     def saveprofile(self):
+        self.firstname = string.capwords(self.firstname.text())
+        self.lastname = string.capwords(self.lastname.text())
+
         gender = str(self.gender.currentText())
 
 

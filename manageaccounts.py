@@ -77,6 +77,15 @@ class manageAccounts(QDialog):
     def deleterecord(self):
         if self.mode == "Delete":
             self.cur.execute('DELETE FROM users WHERE userID = ?', (self.currentUserID,))
+
+            self.cur.execute('SELECT addressID FROM usad WHERE userID = ?',(self.currentUserID,))
+            addressID = self.cur.fetchall()
+            addressID = addressID[0][0]
+            self.cur.execute('SELECT COUNT(addressID) FROM usad WHERE addressID = ?',(addressID,))
+            count = self.cur.fetchall()
+            if count[0][0] == 1:
+                self.cur.execute('DELETE FROM address WHERE addressID = ?',(addressID,))
+            self.cur.execute('DELETE FROM usad WHERE userID = ?', (self.currentUserID,))
             self.loadTable()
 
     def updateadmin(self):
