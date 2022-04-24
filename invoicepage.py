@@ -1,13 +1,8 @@
-import sys
 from PyQt5.uic import loadUi
-from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QDialog, QApplication, QWidget
-from PyQt5.QtGui import QPixmap
+from PyQt5.QtWidgets import QDialog
 
 import sqlite3
 import locale
-import datetime
-from datetime import datetime,date
 
 class createInvoice(QDialog):
     def __init__(self, app, lid, uid, inid ,admin):

@@ -1,12 +1,9 @@
-import sys
 from PyQt5.uic import loadUi
-from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QDialog, QApplication, QWidget
-from PyQt5.QtGui import QPixmap
+from PyQt5.QtWidgets import QDialog
 
 import sqlite3
 import datetime
-from datetime import datetime,date
+from datetime import datetime
 
 class viewListDetails(QDialog):
     def __init__(self, app, lid, uid, admin):
