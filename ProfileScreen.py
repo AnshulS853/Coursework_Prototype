@@ -105,6 +105,8 @@ class FillProfileScreen(QDialog):
         if user_age <= 13:
             self.doberror.setText("You have to be over 13 to create an account")
             return
+        else:
+            return True
 
     def saveprofile(self):
         self.firstname = string.capwords(self.firstname.text())
@@ -135,16 +137,17 @@ class FillProfileScreen(QDialog):
         # widget.setCurrentIndex(widget.currentIndex() + 1)
 
         dob = self.dob.date().toPyDate()
-        self.checkuserage(dob)
+        if self.checkuserage(dob) is True:
+            user_info = (self.firstname,
+                         self.lastname,
+                         email,
+                         dob,
+                         int(gender))
 
-        user_info = (self.firstname,
-                     self.lastname,
-                     email,
-                     dob,
-                     int(gender))
+            x = databaseClass(self.userID)
+            x.insertuserinfo(user_info)
 
-        x = databaseClass(self.userID)
-        x.insertuserinfo(user_info)
-
-        self.close()
-        self.app.callAddressScreen()
+            self.close()
+            self.app.callAddressScreen()
+        else:
+            return

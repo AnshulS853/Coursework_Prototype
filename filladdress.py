@@ -60,56 +60,56 @@ class FillAddress(QDialog):
     def saveaddress(self):
         if self.validate_postcode(str(self.postcode.text())) is not True:
             return
-
-        user_address = (self.houseno.text(),
-                        self.addressfield1.text(),
-                        self.addressfield2.text(),
-                        self.postcode.text(),
-                        self.county.text())
-
-        # user_address = {"afieldone": self.addressfield1.text(),
-        #              "afieldtwo": self.addressfield2.text(),
-        #              "postcode": int(self.postcode.text()),
-        #              "county": self.county.text()}
-
-        conn = sqlite3.connect("auc_database.db",isolation_level=None)
-        # connecting to the database
-        cur = conn.cursor()
-
-        # cur.execute('SELECT COUNT(postcode) FROM address WHERE postode=?',(user_address[3]))
-        # count = cur.fetchall()
-        # if count[0][0] != 0:
-        #     cur.execute('SELECT COUNT(addressfield1) FROM address WHERE addressfield1=?',(user_address[1]))
-        #     count = cur.fetchall()
-        #     if count[0][0] != 0:
-        #         pass
-
-        cur.execute('SELECT COUNT(postcode) FROM address WHERE postcode=?',(user_address[3],))
-        countpostcode = cur.fetchall()
-        cur.execute('SELECT COUNT(houseno) FROM address WHERE houseno=?',(user_address[0],))
-        counthouseno = cur.fetchall()
-        if countpostcode[0][0] != 0 and counthouseno[0][0] != 0:
-            cur.execute('SELECT addressID FROM address where houseno=? AND postcode=?',(user_address[0],user_address[3]))
-            self.addressID = cur.fetchall()
-            self.addressID = self.addressID[0][0]
-            # print(self.addressID)
         else:
-            x = databaseClass(self.userID)
-            self.addressID = x.insertaddress(user_address)
-            # print(self.addressID)
+            user_address = (self.houseno.text(),
+                            self.addressfield1.text(),
+                            self.addressfield2.text(),
+                            self.postcode.text(),
+                            self.county.text())
 
-        # cur.execute('UPDATE users SET addressID=? WHERE userID=?', (self.addressID, self.userID))\
-        cur.execute('INSERT INTO usad (userID,addressID) VALUES (?,?)',(self.userID,self.addressID))
+            # user_address = {"afieldone": self.addressfield1.text(),
+            #              "afieldtwo": self.addressfield2.text(),
+            #              "postcode": int(self.postcode.text()),
+            #              "county": self.county.text()}
 
-        cur.execute('SELECT admin FROM users WHERE userID=?', (self.userID,))
-        admin = cur.fetchone()
+            conn = sqlite3.connect("auc_database.db",isolation_level=None)
+            # connecting to the database
+            cur = conn.cursor()
 
-        if admin[0] == True:
-            self.close()
-            self.app.callAdminWindow(self.userID,admin)
-        else:
-             self.close()
-             self.app.callMainWindow(self.userID,admin)
+            # cur.execute('SELECT COUNT(postcode) FROM address WHERE postode=?',(user_address[3]))
+            # count = cur.fetchall()
+            # if count[0][0] != 0:
+            #     cur.execute('SELECT COUNT(addressfield1) FROM address WHERE addressfield1=?',(user_address[1]))
+            #     count = cur.fetchall()
+            #     if count[0][0] != 0:
+            #         pass
+
+            cur.execute('SELECT COUNT(postcode) FROM address WHERE postcode=?',(user_address[3],))
+            countpostcode = cur.fetchall()
+            cur.execute('SELECT COUNT(houseno) FROM address WHERE houseno=?',(user_address[0],))
+            counthouseno = cur.fetchall()
+            if countpostcode[0][0] != 0 and counthouseno[0][0] != 0:
+                cur.execute('SELECT addressID FROM address where houseno=? AND postcode=?',(user_address[0],user_address[3]))
+                self.addressID = cur.fetchall()
+                self.addressID = self.addressID[0][0]
+                # print(self.addressID)
+            else:
+                x = databaseClass(self.userID)
+                self.addressID = x.insertaddress(user_address)
+                # print(self.addressID)
+
+            # cur.execute('UPDATE users SET addressID=? WHERE userID=?', (self.addressID, self.userID))
+            cur.execute('INSERT INTO usad (userID,addressID) VALUES (?,?)',(self.userID,self.addressID))
+
+            cur.execute('SELECT admin FROM users WHERE userID=?', (self.userID,))
+            admin = cur.fetchone()
+
+            if admin[0] == True:
+                self.close()
+                self.app.callAdminWindow(self.userID,admin)
+            else:
+                 self.close()
+                 self.app.callMainWindow(self.userID,admin)
 
 
 
