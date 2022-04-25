@@ -51,12 +51,12 @@ class findInvoices(QDialog):
     def fetchlistingsbought(self):
         self.cur.execute('SELECT listingID FROM invoice WHERE buyerID = ?',(self.userID,))
         buyerIDs = self.cur.fetchall()
-        print("buyerIDs = ",buyerIDs)
+        # print("buyerIDs = ",buyerIDs)
 
 
         self.cur.execute('SELECT listingID FROM listings WHERE sellerID = ? AND active=0',(self.userID,))
         listingIDs = self.cur.fetchall()
-        print("listingIDs",listingIDs)
+        # print("listingIDs",listingIDs)
 
         self.insertlist = []
 
@@ -79,16 +79,16 @@ class findInvoices(QDialog):
     def loadTable(self):
         self.fetchlistingsbought()
         self.ilistingstable.setRowCount(0)
-        print(self.insertlist)
+        # print(self.insertlist)
         results = []
         for i in self.insertlist:
             self.cur.execute('SELECT listingID,title,price,dateofend FROM listings WHERE listingID = ?',(i,))
             det = self.cur.fetchall()
-            print(det)
+            # print(det)
             det = det[0]
             results.append(det)
 
-        print(results)
+        # print(results)
         self.ilistingstable.setRowCount(50)
 
         for row_number, row_data in enumerate(results):
