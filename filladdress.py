@@ -39,23 +39,27 @@ class FillAddress(QDialog):
             self.app.callMainWindow(self.userID,self.checkadmin)
 
     def validate_postcode(self,pc):
-        pattern = 'not matched'
-        # e.g. W27XX
-        if len(pc.replace(" ", "")) == 5:
-            pattern = re.compile("^[a-zA-Z]{1}[0-9]{2}[a-zA-Z]{2}")
-        # e.g. TW27XX
-        elif len(pc.replace(" ", "")) == 6:
-            pattern = re.compile("^[a-zA-Z]{2}[0-9]{2}[a-zA-Z]{2}")
-        # e.g. TW218FF
-        elif len(pc.replace(" ", "")) == 7:
-            pattern = re.compile("^[a-zA-Z]{2}[0-9]{3}[a-zA-Z]{2}")
-
-        if pattern == 'not matched':
-            self.postcodeerror.setText("This is an invalid UK postcode")
+        if pc.isspace() == True:
+            self.postcodeerror.setText("Please remove the space from the postcode")
             return
         else:
-            if pattern.match(pc):
-                return True
+            pattern = 'not matched'
+            # e.g. W27XX
+            if len(pc.replace(" ", "")) == 5:
+                pattern = re.compile("^[a-zA-Z]{1}[0-9]{2}[a-zA-Z]{2}")
+            # e.g. TW27XX
+            elif len(pc.replace(" ", "")) == 6:
+                pattern = re.compile("^[a-zA-Z]{2}[0-9]{2}[a-zA-Z]{2}")
+            # e.g. TW218FF
+            elif len(pc.replace(" ", "")) == 7:
+                pattern = re.compile("^[a-zA-Z]{2}[0-9]{3}[a-zA-Z]{2}")
+
+            if pattern == 'not matched':
+                self.postcodeerror.setText("This is an invalid UK postcode")
+                return
+            else:
+                if pattern.match(pc):
+                    return True
 
     def saveaddress(self):
         if self.validate_postcode(str(self.postcode.text())) is not True:
@@ -88,6 +92,7 @@ class FillAddress(QDialog):
             countpostcode = cur.fetchall()
             cur.execute('SELECT COUNT(houseno) FROM address WHERE houseno=?',(user_address[0],))
             counthouseno = cur.fetchall()
+
             if countpostcode[0][0] != 0 and counthouseno[0][0] != 0:
                 cur.execute('SELECT addressID FROM address where houseno=? AND postcode=?',(user_address[0],user_address[3]))
                 self.addressID = cur.fetchall()
@@ -99,7 +104,10 @@ class FillAddress(QDialog):
                 # print(self.addressID)
 
             # cur.execute('UPDATE users SET addressID=? WHERE userID=?', (self.addressID, self.userID))
-            cur.execute('INSERT INTO usad (userID,addressID) VALUES (?,?)',(self.userID,self.addressID))
+            if not self.checkupdate:
+                cur.execute('INSERT INTO usad (userID,addressID) VALUES (?,?)',(self.userID,self.addressID))
+            else:
+                cur.execute('UPDATE usad SET addressID = ? WHERE userID = ?',(self.addressID,self.userID))
 
             cur.execute('SELECT admin FROM users WHERE userID=?', (self.userID,))
             admin = cur.fetchone()
