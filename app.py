@@ -19,6 +19,7 @@ class appClass():
     def __init__(self,app):
         self.app = app
         self.userID = None
+        self.admin = None
         self.setlistsinactive()
 
     def setlistsinactive(self):
