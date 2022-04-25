@@ -78,12 +78,9 @@ class findInvoices(QDialog):
     def loadTable(self):
         self.fetchlistingsbought()
         self.ilistingstable.setRowCount(0)
-        results = []
         for i in self.insertlist:
             self.cur.execute('SELECT listingID,title,price,dateofend FROM listings WHERE listingID = ?',(i,))
-            listingID = self.cur.fetchall()
-            listingID = listingID[0]
-            results.append(listingID)
+            results = self.cur.fetchall()
 
         self.ilistingstable.setRowCount(50)
 

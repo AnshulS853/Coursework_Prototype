@@ -169,7 +169,7 @@ color:rgb(255, 255, 255);</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;; color:red;</string>
+     <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;; color:white;</string>
     </property>
     <property name="text">
      <string/>
